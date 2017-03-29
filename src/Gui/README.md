@@ -1,3 +1,3 @@
 # Gui
 
-In this part, the Gui of the program will be coded.
+In this part, the Gui sources will be coded.

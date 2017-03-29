@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Equipe.h"
+#include "Equipe.hpp"
 
 using namespace std;
 

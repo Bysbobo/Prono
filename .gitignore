@@ -32,6 +32,9 @@
 *.out
 *.app
 
+# Build directory
+build/*
+
 ### Linux ###
 *~
 

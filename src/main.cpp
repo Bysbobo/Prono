@@ -1,15 +1,16 @@
 #include <iostream>
 #include <string>
 
-#include "Variables.h"
-#include "Ligue1.h"
-#include "Match.h"
-#include "Equipe.h"
+#include "Variables.hpp"
+#include "Ligue1.hpp"
+#include "Match.hpp"
+#include "Equipe.hpp"
 
 using namespace std;
 
 int main()
 {
+    cout << BDD << endl;
     Ligue1 ligue;
 
     cout << "Taille du bordel: " << ligue.getVectorOfTeams().size() << endl << endl;

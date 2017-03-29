@@ -3,9 +3,9 @@
 
 #include <vector>
 
-#include "Variables.h"
-#include "Equipe.h"
-#include "Match.h"
+#include "Variables.hpp"
+#include "Equipe.hpp"
+#include "Match.hpp"
 
 class Ligue1
 {

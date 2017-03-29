@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "Ligue1.h"
+#include "Ligue1.hpp"
 
 using namespace std;
 

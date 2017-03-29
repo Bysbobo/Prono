@@ -1,8 +1,8 @@
 #ifndef MATCH_H_INCLUDED
 #define MATCH_H_INCLUDED
 
-#include "Variables.h"
-#include "Equipe.h"
+#include "Variables.hpp"
+#include "Equipe.hpp"
 
 class Match
 {

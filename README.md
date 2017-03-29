@@ -15,10 +15,10 @@ The aim of this project is to create a program that will handle pronostics on an
 1. Clone the repository on your local machine
 2. Enter the local repository
 3. Run the following commands :
-  1. mkdir build
-  2. cd build
-  3. cmake ..
-  4. make
+   1. mkdir build
+   2. cd build
+   3. cmake ..
+   4. make
 
 ### Run the program
 

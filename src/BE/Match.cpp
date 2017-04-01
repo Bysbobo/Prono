@@ -4,7 +4,9 @@
 
 using namespace std;
 
-Match::Match(Equipe teamIn, Equipe teamOut) : _homeTeam(teamIn), _outsideTeam(teamOut)
+Match::Match(Team teamIn, Team teamOut, int scoreIn, int scoreOut) :
+                _homeTeam(teamIn), _outsideTeam(teamOut),
+                _homeTeamScore(scoreIn), _outsideTeamScore(scoreOut)
 {
 }
 
@@ -19,12 +21,12 @@ int Match::winnerEqualOrLoser() const
 }
 
 // Getters
-Equipe Match::getHomeTeam() const
+Team Match::getHomeTeam() const
 {
     return _homeTeam;
 }
 
-Equipe Match::getOutsideTeam() const
+Team Match::getOutsideTeam() const
 {
     return _outsideTeam;
 }

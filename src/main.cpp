@@ -2,16 +2,16 @@
 #include <string>
 
 #include "Variables.hpp"
-#include "Ligue1.hpp"
+#include "League.hpp"
 #include "Match.hpp"
-#include "Equipe.hpp"
+#include "Team.hpp"
 
 using namespace std;
 
 int main()
 {
     cout << BDD << endl;
-    Ligue1 ligue;
+    League ligue;
     if (!ligue.collectTeams())
         cerr << "Putain de mardi..." << endl;
     if (!ligue.collectMatchs())
@@ -21,7 +21,7 @@ int main()
 
     for (unsigned int i = 0; i < ligue.getVectorOfTeams().size(); ++i)
     {
-        cout << "Equipe: ";
+        cout << "Team: ";
         cout.width(14);
         cout << left << (ligue.getVectorOfTeams())[i].getName();
         cout.width(4);

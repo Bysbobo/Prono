@@ -1,17 +1,17 @@
-#ifndef LIGUE1_H_INCLUDED
-#define LIGUE1_H_INCLUDED
+#ifndef LEAGUE_H_INCLUDED
+#define LEAGUE_H_INCLUDED
 
 #include <vector>
 
 #include "Variables.hpp"
-#include "Equipe.hpp"
+#include "Team.hpp"
 #include "Match.hpp"
 
-class Ligue1
+class League
 {
 public:
 
-    Ligue1();
+    League();
 
     bool collectTeams();
     bool collectMatchs();
@@ -20,13 +20,13 @@ public:
     std::string extractFullName(std::string shortTeamName) const;
     std::string extractShortName(std::string shortTeamName) const;
 
-    std::vector<Equipe> getVectorOfTeams() const;
+    std::vector<Team> getVectorOfTeams() const;
     std::vector<Match>  getVectorOfMatchs() const;
 
 
 private:
-    std::vector<Equipe> _vectorOfTeams;
+    std::vector<Team> _vectorOfTeams;
     std::vector<Match>  _vectorOfMatchs;
 };
 
-#endif // LIGUE1_H_INCLUDED
+#endif // LEAGUE_H_INCLUDED

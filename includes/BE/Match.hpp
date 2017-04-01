@@ -2,24 +2,24 @@
 #define MATCH_H_INCLUDED
 
 #include "Variables.hpp"
-#include "Equipe.hpp"
+#include "Team.hpp"
 
 class Match
 {
 public:
-    Match(Equipe teamIn, Equipe teamOut);
+    Match(Team teamIn, Team teamOut, int scoreIn, int scoreOut);
 
     int winnerEqualOrLoser() const;
 
-    Equipe getHomeTeam() const;
-    Equipe getOutsideTeam() const;
+    Team getHomeTeam() const;
+    Team getOutsideTeam() const;
 
     unsigned int getHomeTeamScore() const;
     unsigned int getOutsideTeamScore() const;
 
 private:
-    Equipe _homeTeam;
-    Equipe _outsideTeam;
+    Team _homeTeam;
+    Team _outsideTeam;
     unsigned int _homeTeamScore;
     unsigned int _outsideTeamScore;
 };

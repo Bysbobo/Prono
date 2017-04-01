@@ -4,16 +4,16 @@
 #include <cstdlib>
 #include <sstream>
 
-#include "Ligue1.hpp"
+#include "League.hpp"
 
 using namespace std;
 
 // Default constructors
-Ligue1::Ligue1()
+League::League()
 {
 }
 
-bool Ligue1::collectTeams()
+bool League::collectTeams()
 {
     // Read and stock all clubs
     ifstream myFlux(BDD, ios::in);
@@ -24,7 +24,7 @@ bool Ligue1::collectTeams()
         for (int i = 0; i < NB_OF_TEAM; ++i)
         {
             myFlux >> teamName >> teamShortName;
-            _vectorOfTeams.push_back(Equipe(teamName, teamShortName));
+            _vectorOfTeams.push_back(Team(teamName, teamShortName));
         }
 
         myFlux.close();
@@ -36,7 +36,7 @@ bool Ligue1::collectTeams()
     return false;
 }
 
-bool Ligue1::collectMatchs()
+bool League::collectMatchs()
 {
     // Read and stock all matches
     string firstTeam, secondTeam;
@@ -82,7 +82,7 @@ bool Ligue1::collectMatchs()
                         cout << secondTeam << endl;
 
                         // For each line, have to save collected datas
-                        vector<Equipe>::iterator itVect = _vectorOfTeams.begin();
+                        vector<Team>::iterator itVect = _vectorOfTeams.begin();
                         for (; itVect != _vectorOfTeams.end(); ++itVect)
                         {
                             if (itVect->getShortName() == firstTeam)
@@ -106,7 +106,7 @@ bool Ligue1::collectMatchs()
             }
             cout << endl;
         }
-        vector<Equipe>::iterator itVect = _vectorOfTeams.begin();
+        vector<Team>::iterator itVect = _vectorOfTeams.begin();
         for (; itVect != _vectorOfTeams.end(); ++itVect)
             cout << itVect->getName() << " - " << itVect->getPointNbRanking() << endl;
         return true;
@@ -118,7 +118,7 @@ bool Ligue1::collectMatchs()
     return false;
 }
 
-void Ligue1::addNewJourney(unsigned int journeyNb)
+void League::addNewJourney(unsigned int journeyNb)
 {
     ofstream myFlux(BDD, ios::out | ios::app);
     if (!myFlux)
@@ -153,7 +153,7 @@ void Ligue1::addNewJourney(unsigned int journeyNb)
     while ( ++nbMatchsFilled <= NB_OF_MATCH );
 }
 
-bool Ligue1::isTeamAvailable(string teamToCheck) const
+bool League::isTeamAvailable(string teamToCheck) const
 {
     const unsigned int size = _vectorOfTeams.size();
     for (unsigned int i = 0; i < size; ++i)
@@ -162,7 +162,7 @@ bool Ligue1::isTeamAvailable(string teamToCheck) const
     return false;
 }
 
-string Ligue1::extractFullName(string shortTeamName) const
+string League::extractFullName(string shortTeamName) const
 {
     const unsigned int size = _vectorOfTeams.size();
     for (unsigned int i = 0; i < size; ++i)
@@ -171,7 +171,7 @@ string Ligue1::extractFullName(string shortTeamName) const
     return shortTeamName;
 }
 
-string Ligue1::extractShortName(string teamName) const
+string League::extractShortName(string teamName) const
 {
     const unsigned int size = _vectorOfTeams.size();
     for (unsigned int i = 0; i < size; ++i)
@@ -181,12 +181,12 @@ string Ligue1::extractShortName(string teamName) const
 }
 
 // Getters
-vector<Equipe> Ligue1::getVectorOfTeams() const
+vector<Team> League::getVectorOfTeams() const
 {
     return _vectorOfTeams;
 }
 
-vector<Match> Ligue1::getVectorOfMatchs() const
+vector<Match> League::getVectorOfMatchs() const
 {
     return _vectorOfMatchs;
 }

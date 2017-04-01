@@ -7,44 +7,14 @@
 class Match
 {
 public:
-    /**
-     * \fn Equipe(std::string name, std::string shortName)
-     * \brief constructor.
-     * \param name : nom de .
-     * \param shortName : nom de .
-     */
     Match(Equipe teamIn, Equipe teamOut);
 
-    /**
-     * \fn std::vector<Equipe> getMatchsHistory() const
-     * \brief This method is a getter of the vector of matches history.
-     * \return The vector of matches history.
-     */
     int winnerEqualOrLoser() const;
 
-    /**
-     * \fn std::vector<Equipe> getMatchsHistory() const
-     * \brief This method is a getter of the vector of matches history.
-     * \return The vector of matches history.
-     */
     Equipe getHomeTeam() const;
-    /**
-     * \fn std::vector<Equipe> getMatchsHistory() const
-     * \brief This method is a getter of the vector of matches history.
-     * \return The vector of matches history.
-     */
     Equipe getOutsideTeam() const;
-    /**
-     * \fn std::vector<Equipe> getMatchsHistory() const
-     * \brief This method is a getter of the vector of matches history.
-     * \return The vector of matches history.
-     */
+
     unsigned int getHomeTeamScore() const;
-    /**
-     * \fn std::vector<Equipe> getMatchsHistory() const
-     * \brief This method is a getter of the vector of matches history.
-     * \return The vector of matches history.
-     */
     unsigned int getOutsideTeamScore() const;
 
 private:

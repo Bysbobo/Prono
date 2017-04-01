@@ -8,50 +8,23 @@
 class Equipe
 {
 public:
-    /**
-     * \fn Equipe(std::string name, std::string shortName)
-     * \brief constructor.
-     * \param name : nom de .
-     * \param shortName : nom de .
-     */
+
     Equipe();
-    /**
-     * \fn Equipe(std::string name, std::string shortName)
-     * \brief constructor.
-     * \param name : nom de .
-     * \param shortName : nom de .
-     */
     Equipe(std::string name, std::string shortName);
 
-    /**
-     * \fn std::vector<Equipe> getMatchsHistory() const
-     * \brief This method is a getter of the vector of matches history.
-     * \return The vector of matches history.
-     */
     std::string getName() const;
-    /**
-     * \fn std::vector<Equipe> getMatchsHistory() const
-     * \brief This method is a getter of the vector of matches history.
-     * \return The vector of matches history.
-     */
     std::string getShortName() const;
-    /**
-     * \fn std::vector<Equipe> getMatchsHistory() const
-     * \brief This method is a getter of the vector of matches history.
-     * \return The vector of matches history.
-     */
     int getRanking() const;
-    /**
-     * \fn std::vector<Equipe> getMatchsHistory() const
-     * \brief This method is a getter of the vector of matches history.
-     * \return The vector of matches history.
-     */
+    int getPointNbRanking() const;
     std::vector<Equipe> getMatchsHistory() const;
+
+    void addPointsForRanking(int points);
 
 private:
     std::string _name;
     std::string _shortName;
-    int _ranking;
+    int _ranking; // Creer un objet ranking avec toutes les stats serait pas du luxe
+    int _rankingPointNb; // Va de pair avec au dessus...
     std::vector<Equipe> _vectorOfMatchsHistory;
 
 };

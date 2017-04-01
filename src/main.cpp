@@ -12,8 +12,12 @@ int main()
 {
     cout << BDD << endl;
     Ligue1 ligue;
+    if (!ligue.collectTeams())
+        cerr << "Putain de mardi..." << endl;
+    if (!ligue.collectMatchs())
+        cerr << "Purin de mardi..." << endl;
 
-    cout << "Taille du bordel: " << ligue.getVectorOfTeams().size() << endl << endl;
+    cout << "Taille du tableau: " << ligue.getVectorOfTeams().size() << endl << endl;
 
     for (unsigned int i = 0; i < ligue.getVectorOfTeams().size(); ++i)
     {
@@ -22,7 +26,7 @@ int main()
         cout << left << (ligue.getVectorOfTeams())[i].getName();
         cout.width(4);
         cout << left << (ligue.getVectorOfTeams())[i].getShortName();
-        cout << " - Classement: " << (ligue.getVectorOfTeams())[i].getRanking() << endl;
+        cout << " - Classement: " << (ligue.getVectorOfTeams())[i].getPointNbRanking() << endl;
     }
 
 // Pour rajouter une ligne de match ensuite

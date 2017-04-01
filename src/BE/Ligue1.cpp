@@ -1,5 +1,8 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <cstdlib>
+#include <sstream>
 
 #include "Ligue1.hpp"
 
@@ -8,20 +11,111 @@ using namespace std;
 // Default constructors
 Ligue1::Ligue1()
 {
+}
+
+bool Ligue1::collectTeams()
+{
+    // Read and stock all clubs
     ifstream myFlux(BDD, ios::in);
-    if (!myFlux)
+    if (myFlux)
     {
-        cerr << "Erreur d'ouverture pour lecture!" << endl;
-        return;
+        // Stock of club informations
+        string teamName, teamShortName;
+        for (int i = 0; i < NB_OF_TEAM; ++i)
+        {
+            myFlux >> teamName >> teamShortName;
+            _vectorOfTeams.push_back(Equipe(teamName, teamShortName));
+        }
+
+        myFlux.close();
+
+        return true;
     }
 
-    string teamName, teamShortName;
-    for (int i = 0; i < NB_OF_TEAM; ++i)
-    {
-        myFlux >> teamName >> teamShortName;
-        _vectorOfTeams.push_back(Equipe(teamName, teamShortName));
-    }
+    cerr << "Failed to open " << BDD << " for reading!" << endl;
+    return false;
+}
 
+bool Ligue1::collectMatchs()
+{
+    // Read and stock all matches
+    string firstTeam, secondTeam;
+    unsigned int firstScore, secondScore;
+    ifstream matchFlow("../ressources/Matchs.txt", ios::in);
+    if (matchFlow)
+    {
+        string line;
+        while (getline(matchFlow, line, '\n'))
+        {
+            cout << "Test:" << endl;
+            istringstream iss(line);
+            string aString;
+            int count(-1);
+            while (getline(iss, aString, '/'))
+            {
+                count++;
+                if (count == 0 || count == 1)
+                    continue;
+                switch (count % 4)
+                {
+                    case 2: 
+                    {
+                        firstTeam   =  aString;
+                        cout << firstTeam << " " ;
+                        break;
+                    }
+                    case 3: 
+                    {
+                        firstScore  = atol(aString.c_str());
+                        cout << firstScore << "-";
+                        break;
+                    }
+                    case 0: 
+                    {
+                        secondScore = atol(aString.c_str());
+                        cout << secondScore << " ";
+                        break;
+                    }
+                    case 1: 
+                    {
+                        secondTeam  =  aString;
+                        cout << secondTeam << endl;
+
+                        // For each line, have to save collected datas
+                        vector<Equipe>::iterator itVect = _vectorOfTeams.begin();
+                        for (; itVect != _vectorOfTeams.end(); ++itVect)
+                        {
+                            if (itVect->getShortName() == firstTeam)
+                            {
+                                if (firstScore == secondScore) itVect->addPointsForRanking(1);
+                                if (firstScore >  secondScore) itVect->addPointsForRanking(3);
+                                cout << "Trouve: " << itVect->getName() << " => " << itVect->getPointNbRanking() << endl;
+                            }
+
+                            if (itVect->getShortName() == secondTeam)
+                            {
+                                if (secondScore == firstScore) itVect->addPointsForRanking(1);
+                                if (secondScore >  firstScore) itVect->addPointsForRanking(3);
+                                cout << "Trouve: " << itVect->getName() << " => " << itVect->getPointNbRanking() << endl;
+                            }
+                        }
+
+                        break;
+                    }
+                }
+            }
+            cout << endl;
+        }
+        vector<Equipe>::iterator itVect = _vectorOfTeams.begin();
+        for (; itVect != _vectorOfTeams.end(); ++itVect)
+            cout << itVect->getName() << " - " << itVect->getPointNbRanking() << endl;
+        return true;
+    }
+    
+        
+    // A bien definir dans les variables globales !!!
+    cerr << "Failed to open Matchs.txt for reading!" << endl;
+    return false;
 }
 
 void Ligue1::addNewJourney(unsigned int journeyNb)
@@ -33,7 +127,7 @@ void Ligue1::addNewJourney(unsigned int journeyNb)
         return;
     }
 
-    myFlux << endl << "J=" << journeyNb << ":";
+    myFlux << endl << "J:" << journeyNb;
 
     string teamName1, teamName2;
     unsigned int score1, score2;

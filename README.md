@@ -5,7 +5,8 @@ The aim of this project is to create a program that will handle pronostics on an
 
 ## Requirements
 
-* CMake (>= 2.6)
+* CMake (>= 2.8.8)
+* Qt5Widgets
 
 
 ## How to install

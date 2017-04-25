@@ -41,7 +41,7 @@ std::vector<Team> Team::getMatchsHistory() const
 
 void Team::addPointsForRanking(int points)
 {
-	points = (points < 0) ? (points = 0): points;
+	points = (points < 0) ? 0 : points;
 
 	_rankingPointNb += points;
 }

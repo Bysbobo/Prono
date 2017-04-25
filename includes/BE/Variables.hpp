@@ -3,6 +3,7 @@
 
 #define NB_OF_TEAM      20
 #define NB_OF_MATCH     (NB_OF_TEAM-2)/2
-#define BDD             ROOTTOBDD
+#define INFOS           ROOTTOBDD1
+#define MATCHS          ROOTTOBDD2
 
 #endif // VARIABLES_H_INCLUDED

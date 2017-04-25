@@ -4,8 +4,8 @@ INCLUDE_DIRECTORIES(${Prono_SOURCE_DIR}/includes/BE)
 # Create the BE library
 ADD_LIBRARY(BE_LIB
     ${BE_HEADERS}
-    BE/Equipe.cpp
-    BE/Ligue1.cpp
+    BE/Team.cpp
+    BE/League.cpp
     BE/Match.cpp)
 
 # Create the executable

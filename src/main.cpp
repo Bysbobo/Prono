@@ -10,7 +10,9 @@ using namespace std;
 
 int main()
 {
-    cout << BDD << endl;
+    cout << INFOS << endl;
+    cout << MATCHS << endl;
+
     League ligue;
     if (!ligue.collectTeams())
         cerr << "Putain de mardi..." << endl;

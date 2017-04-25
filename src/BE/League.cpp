@@ -16,24 +16,24 @@ League::League()
 bool League::collectTeams()
 {
     // Read and stock all clubs
-    ifstream myFlux(BDD, ios::in);
-    if (myFlux)
+    ifstream teamFlow(INFOS, ios::in);
+    if (!teamFlow)
     {
-        // Stock of club informations
-        string teamName, teamShortName;
-        for (int i = 0; i < NB_OF_TEAM; ++i)
-        {
-            myFlux >> teamName >> teamShortName;
-            _vectorOfTeams.push_back(Team(teamName, teamShortName));
-        }
-
-        myFlux.close();
-
-        return true;
+        cerr << "Failed to open " << INFOS << " for reading!" << endl;
+        return false;
+    }
+        
+    // Stock of club informations
+    string teamName, teamShortName;
+    for (int i = 0; i < NB_OF_TEAM; ++i)
+    {
+        teamFlow >> teamName >> teamShortName;
+        _vectorOfTeams.push_back(Team(teamName, teamShortName));
     }
 
-    cerr << "Failed to open " << BDD << " for reading!" << endl;
-    return false;
+    teamFlow.close();
+
+    return true;
 }
 
 bool League::collectMatchs()
@@ -41,86 +41,84 @@ bool League::collectMatchs()
     // Read and stock all matches
     string firstTeam, secondTeam;
     unsigned int firstScore, secondScore;
-    ifstream matchFlow("../ressources/Matchs.txt", ios::in);
-    if (matchFlow)
+    ifstream matchFlow(MATCHS, ios::in);
+    if (!matchFlow)
     {
-        string line;
-        while (getline(matchFlow, line, '\n'))
+        // A bien definir dans les variables globales !!!
+        cerr << "Failed to open Matchs.txt for reading!" << endl;
+        return false;
+    }
+        
+    string line;
+    while (getline(matchFlow, line, '\n'))
+    {
+        istringstream iss(line);
+        string aString;
+        int count(-1);
+        while (getline(iss, aString, '/'))
         {
-            cout << "Test:" << endl;
-            istringstream iss(line);
-            string aString;
-            int count(-1);
-            while (getline(iss, aString, '/'))
+            count++;
+            if (count == 0 || count == 1)
+                continue;
+
+            switch (count % 4)
             {
-                count++;
-                if (count == 0 || count == 1)
-                    continue;
-                switch (count % 4)
+                case 2:
                 {
-                    case 2: 
-                    {
-                        firstTeam   =  aString;
-                        cout << firstTeam << " " ;
-                        break;
-                    }
-                    case 3: 
-                    {
-                        firstScore  = atol(aString.c_str());
-                        cout << firstScore << "-";
-                        break;
-                    }
-                    case 0: 
-                    {
-                        secondScore = atol(aString.c_str());
-                        cout << secondScore << " ";
-                        break;
-                    }
-                    case 1: 
-                    {
-                        secondTeam  =  aString;
-                        cout << secondTeam << endl;
+                    firstTeam   =  aString;
+                    cout << firstTeam << " ";
+                    break;
+                }
+                case 3:
+                {
+                    firstScore  = atol(aString.c_str());
+                    cout << firstScore;
+                    break;
+                }
+                case 0:
+                {
+                    secondScore = atol(aString.c_str());
+                    cout << " - " << secondScore << " ";
+                    break;
+                }
+                case 1: 
+                {
+                    secondTeam  =  aString;
+                    cout << secondTeam << endl;
 
-                        // For each line, have to save collected datas
-                        vector<Team>::iterator itVect = _vectorOfTeams.begin();
-                        for (; itVect != _vectorOfTeams.end(); ++itVect)
+                    // For each line, have to save collected datas
+                    vector<Team>::iterator itVect = _vectorOfTeams.begin();
+                    for (; itVect != _vectorOfTeams.end(); ++itVect)
+                    {
+                        if (itVect->getShortName() == firstTeam)
                         {
-                            if (itVect->getShortName() == firstTeam)
-                            {
-                                if (firstScore == secondScore) itVect->addPointsForRanking(1);
-                                if (firstScore >  secondScore) itVect->addPointsForRanking(3);
-                                cout << "Trouve: " << itVect->getName() << " => " << itVect->getPointNbRanking() << endl;
-                            }
-
-                            if (itVect->getShortName() == secondTeam)
-                            {
-                                if (secondScore == firstScore) itVect->addPointsForRanking(1);
-                                if (secondScore >  firstScore) itVect->addPointsForRanking(3);
-                                cout << "Trouve: " << itVect->getName() << " => " << itVect->getPointNbRanking() << endl;
-                            }
+                            if (firstScore == secondScore) itVect->addPointsForRanking(1);
+                            if (firstScore >  secondScore) itVect->addPointsForRanking(3);
+                            cout << "Trouve! " << firstTeam << "."<< endl;
                         }
 
-                        break;
+                        if (itVect->getShortName() == secondTeam)
+                        {
+                            if (secondScore == firstScore) itVect->addPointsForRanking(1);
+                            if (secondScore >  firstScore) itVect->addPointsForRanking(3);
+                            cout << "Trouve! " << secondTeam << "."<< endl;
+                        }
                     }
                 }
             }
-            cout << endl;
         }
-        vector<Team>::iterator itVect = _vectorOfTeams.begin();
-        for (; itVect != _vectorOfTeams.end(); ++itVect)
-            cout << itVect->getName() << " - " << itVect->getPointNbRanking() << endl;
-        return true;
+        cout << endl;
     }
     
-        
-    // A bien definir dans les variables globales !!!
-    cerr << "Failed to open Matchs.txt for reading!" << endl;
-    return false;
+    vector<Team>::iterator itVect = _vectorOfTeams.begin();
+    for (; itVect != _vectorOfTeams.end(); ++itVect)
+        cout << itVect->getName() << " - " << itVect->getPointNbRanking() << endl;
+    return true;
 }
 
 void League::addNewJourney(unsigned int journeyNb)
 {
-    ofstream myFlux(BDD, ios::out | ios::app);
+    ofstream myFlux(INFOS, ios::out | ios::app);
     if (!myFlux)
     {
         cerr << "Erreur d'ouverture pour écriture!" << endl;

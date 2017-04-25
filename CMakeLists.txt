@@ -10,6 +10,7 @@ SET(CMAKE_VERBOSE_MAKEFILE TRUE)
 # Enable unit tests
 ENABLE_TESTING()
 
-ADD_DEFINITIONS(-DROOTTOBDD=\"${Prono_SOURCE_DIR}/ressources/Infos.txt\")
+ADD_DEFINITIONS(-DROOTTOBDD1=\"${Prono_SOURCE_DIR}/ressources/Infos.txt\")
+ADD_DEFINITIONS(-DROOTTOBDD2=\"${Prono_SOURCE_DIR}/ressources/Matchs.txt\")
 # Add the subdirectories
 SUBDIRS(includes src)

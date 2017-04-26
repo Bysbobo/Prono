@@ -12,4 +12,4 @@ ADD_LIBRARY(BE_LIB
 ADD_EXECUTABLE(Prono main.cpp)
 
 # Link the executable to the libraries
-TARGET_LINK_LIBRARIES(Prono BE_LIB)
+TARGET_LINK_LIBRARIES(Prono ${Qt5Widgets_LIBRARIES} BE_LIB)

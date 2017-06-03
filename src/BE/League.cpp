@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <cstdlib>
-#include <sstream>
+#include <algorithm>
 
 #include "League.hpp"
 
@@ -36,7 +37,7 @@ bool League::collectTeams()
     return true;
 }
 
-bool League::collectMatchs()
+bool League::collectMatchs(unsigned int untilThisJourney)
 {
     // Read and stock all matches
     string firstTeam, secondTeam;
@@ -45,12 +46,14 @@ bool League::collectMatchs()
     if (!matchFlow)
     {
         // A bien definir dans les variables globales !!!
-        cerr << "Failed to open Matchs.txt for reading!" << endl;
+        cerr << "Failed to open " << MATCHS << " for reading!" << endl;
         return false;
     }
-        
+    
+    unsigned int journeyNumberTreated = 0, test = 1;
+    untilThisJourney = ((untilThisJourney < 10) ? 10 : untilThisJourney);
     string line;
-    while (getline(matchFlow, line, '\n'))
+    while (getline(matchFlow, line, '\n') && ++journeyNumberTreated <= untilThisJourney)
     {
         istringstream iss(line);
         string aString;
@@ -66,26 +69,25 @@ bool League::collectMatchs()
                 case 2:
                 {
                     firstTeam   =  aString;
-                    cout << firstTeam << " ";
+                    cout << "N." << test++ << " - " << firstTeam << " ";
                     break;
                 }
                 case 3:
                 {
                     firstScore  = atol(aString.c_str());
-                    cout << firstScore;
+                    cout << firstScore << " - ";
                     break;
                 }
                 case 0:
                 {
                     secondScore = atol(aString.c_str());
-                    cout << " - " << secondScore << " ";
+                    cout << secondScore << " ";
                     break;
                 }
                 case 1: 
                 {
                     secondTeam  =  aString;
                     cout << secondTeam << endl;
-
                     // For each line, have to save collected datas
                     vector<Team>::iterator itVect = _vectorOfTeams.begin();
                     for (; itVect != _vectorOfTeams.end(); ++itVect)
@@ -94,61 +96,31 @@ bool League::collectMatchs()
                         {
                             if (firstScore == secondScore) itVect->addPointsForRanking(1);
                             if (firstScore >  secondScore) itVect->addPointsForRanking(3);
-                            cout << "Trouve! " << firstTeam << "."<< endl;
+                            itVect->updateGoals(firstScore, secondScore);
+                            itVect->updateMatchCounter();
                         }
-
                         if (itVect->getShortName() == secondTeam)
                         {
                             if (secondScore == firstScore) itVect->addPointsForRanking(1);
                             if (secondScore >  firstScore) itVect->addPointsForRanking(3);
-                            cout << "Trouve! " << secondTeam << "."<< endl;
+                            itVect->updateGoals(secondScore, firstScore);
+                            itVect->updateMatchCounter();
                         }
                     }
+                    _vectorOfMatchs.push_back(Match(stringToTeam(firstTeam), stringToTeam(secondTeam), firstScore, secondScore));
                 }
             }
         }
-        cout << endl;
     }
     
-    vector<Team>::iterator itVect = _vectorOfTeams.begin();
-    for (; itVect != _vectorOfTeams.end(); ++itVect)
-        cout << itVect->getName() << " - " << itVect->getPointNbRanking() << endl;
+    sort(_vectorOfTeams.begin(), _vectorOfTeams.end());
+    reverse(_vectorOfTeams.begin(), _vectorOfTeams.end());
+
+    updateRanking();
+
+    matchFlow.close();
+
     return true;
-}
-
-void League::addNewJourney(unsigned int journeyNb)
-{
-    ofstream myFlux(INFOS, ios::out | ios::app);
-    if (!myFlux)
-    {
-        cerr << "Erreur d'ouverture pour écriture!" << endl;
-        return;
-    }
-
-    myFlux << endl << "J:" << journeyNb;
-
-    string teamName1, teamName2;
-    unsigned int score1, score2;
-    char c;
-    unsigned int nbMatchsFilled = 0;
-
-    cout << "A rentrer sous la forme: Team1 Score1 - Score2 Team2" << endl;
-    do
-    {
-        cout << "Match a enregistrer: ";
-        cin >> teamName1 >> score1 >> c >> score2 >> teamName2;
-        if ( !(isTeamAvailable(teamName1) && isTeamAvailable(teamName2)) )
-        {
-            cout << "Saisie invalide! ";
-            nbMatchsFilled--;
-            continue;
-        }
-
-        myFlux << extractShortName(teamName1) << " " << score1 << "-" << score2 << " " << extractShortName(teamName2);
-        if (nbMatchsFilled < NB_OF_MATCH)
-            myFlux << " / ";
-    }
-    while ( ++nbMatchsFilled <= NB_OF_MATCH );
 }
 
 bool League::isTeamAvailable(string teamToCheck) const
@@ -160,22 +132,91 @@ bool League::isTeamAvailable(string teamToCheck) const
     return false;
 }
 
-string League::extractFullName(string shortTeamName) const
+Team& League::stringToTeam(std::string teamName)
 {
     const unsigned int size = _vectorOfTeams.size();
     for (unsigned int i = 0; i < size; ++i)
-        if (_vectorOfTeams[i].getShortName() == shortTeamName)
-            return _vectorOfTeams[i].getName();
-    return shortTeamName;
+        if (_vectorOfTeams[i].getName() == teamName || _vectorOfTeams[i].getShortName() == teamName)
+            return _vectorOfTeams[i];
+    // Undefined behaviour here...
+    //return ???;
 }
 
-string League::extractShortName(string teamName) const
+void League::updateRanking()
 {
     const unsigned int size = _vectorOfTeams.size();
     for (unsigned int i = 0; i < size; ++i)
-        if (_vectorOfTeams[i].getName() == teamName)
-            return _vectorOfTeams[i].getShortName();
-    return teamName;
+    {
+        _vectorOfTeams[i].updateRanking(i);
+    }
+}
+
+void League::teamsToString() const
+{
+    cout << "Nomber of teams: " << getVectorOfTeams().size() << endl;
+    const unsigned int size = getVectorOfTeams().size();
+    for (unsigned int i = 0; i < size; ++i)
+    {
+        cout.width(2);
+        cout << left << i+1 << " - ";
+
+        cout.width(14);
+        cout << left << (getVectorOfTeams())[i].getName();
+        cout.width(4);
+        cout << left << (getVectorOfTeams())[i].getShortName();
+
+        cout << " - Pts: ";
+        cout.width(2);
+        cout << (getVectorOfTeams())[i].getPointNbRanking();
+
+        cout << " - Goals: ";
+        cout.width(3);
+        cout << (getVectorOfTeams())[i].getMarkedGoals() << "/";
+        cout.width(2);
+        cout << (getVectorOfTeams())[i].getTakenGoals();
+        
+        cout << " - Rate: ";
+        cout.width(3);
+        cout << (int)((getVectorOfTeams())[i].getMarkedGoals()) - (int)((getVectorOfTeams())[i].getTakenGoals());
+        
+        cout << " - Played: " << (getVectorOfTeams())[i].getPlayedGameNumber() << endl;
+    }
+}
+
+void League::matchsToString() const
+{
+    cout << "Nomber of matchs: " << getVectorOfMatchs().size() << endl;
+    const unsigned int size = getVectorOfMatchs().size();
+    for (unsigned int i = 0; i < size; ++i)
+    {
+        cout.width(3);
+        cout << left << i+1 << " - ";
+
+        cout.width(14);
+        cout << left << (getVectorOfMatchs())[i].getHomeTeam().getName();
+        cout << "(";
+        cout.width(4);
+        cout << left << (getVectorOfMatchs())[i].getHomeTeam().getShortName();
+        cout << ") ";
+        cout.width(1);
+        cout << (getVectorOfMatchs())[i].getHomeTeamScore();
+
+        cout << " - ";
+        cout.width(1);
+        cout << (getVectorOfMatchs())[i].getOutsideTeamScore();
+        cout << " (";
+        cout.width(4);
+        cout << (getVectorOfMatchs())[i].getOutsideTeam().getShortName();
+        cout << ") ";
+        cout.width(14);
+        cout << (getVectorOfMatchs())[i].getOutsideTeam().getName();
+        
+        cout << "- Prono: ";
+        cout << "None for now, sorry ;) => ";
+        //(getVectorOfMatchs())[i].prono();
+
+        cout << endl;
+    }
 }
 
 // Getters

@@ -10,45 +10,20 @@ using namespace std;
 
 int main()
 {
-    cout << INFOS << endl;
-    cout << MATCHS << endl;
-
     League ligue;
     if (!ligue.collectTeams())
-        cerr << "Putain de mardi..." << endl;
-    if (!ligue.collectMatchs())
-        cerr << "Purin de mardi..." << endl;
+        cerr << "Error during teams reading" << endl;
 
-    cout << "Taille du tableau: " << ligue.getVectorOfTeams().size() << endl << endl;
+    cout << "Match until which journey?? (10 < J < 38) ";
+    unsigned int val;
+    cin >> val;
 
-    for (unsigned int i = 0; i < ligue.getVectorOfTeams().size(); ++i)
-    {
-        cout << "Team: ";
-        cout.width(14);
-        cout << left << (ligue.getVectorOfTeams())[i].getName();
-        cout.width(4);
-        cout << left << (ligue.getVectorOfTeams())[i].getShortName();
-        cout << " - Classement: " << (ligue.getVectorOfTeams())[i].getPointNbRanking() << endl;
-    }
+    if (!ligue.collectMatchs(val))
+        cerr << "Error during matchs reading" << endl;
 
-// Pour rajouter une ligne de match ensuite
-/*
-    string matchsToFill;
-    cout << "Voulez-vous remplir les matchs? (Y / N) ";
-    cin >> matchsToFill;
-    while (matchsToFill == "Y")
-    {
-        cout << "Quelle journee? ";
-        int journeyNumber;
-        cin >> journeyNumber;
-        ligue.addNewJourney(journeyNumber);
-
-        cout << "Voulez-vous remplir une autre journee? (Y / N) ";
-        cin >> matchsToFill;
-    }
-*/
-
-
+    ligue.teamsToString();
+    cout << endl;
+    ligue.matchsToString();
 
     return 0;
 }

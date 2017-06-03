@@ -7,13 +7,13 @@
 class Match
 {
 public:
-    Match(Team teamIn, Team teamOut, int scoreIn, int scoreOut);
+    Match();
+    Match(Team teamIn, Team teamOut, unsigned int scoreIn, unsigned int scoreOut);
 
-    int winnerEqualOrLoser() const;
+    Team prono() const;
 
     Team getHomeTeam() const;
     Team getOutsideTeam() const;
-
     unsigned int getHomeTeamScore() const;
     unsigned int getOutsideTeamScore() const;
 

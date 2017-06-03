@@ -12,19 +12,34 @@ public:
     Team();
     Team(std::string name, std::string shortName);
 
+    void addPointsForRanking(int points);
+    void updateRanking(unsigned int rankIndicator);
+    void updateMatchCounter();
+    void updateGoals(unsigned int nbMarkedGoals, unsigned int nbTakenGoals);
+
+    bool operator< (const Team& other) const;
+
     std::string getName() const;
     std::string getShortName() const;
-    int getRanking() const;
-    int getPointNbRanking() const;
+    unsigned int getRanking() const;
+    unsigned int getPointNbRanking() const;
+    unsigned int getPlayedGameNumber() const;
+    unsigned int getMarkedGoals() const;
+    unsigned int getTakenGoals() const;
+    int getGoalAverage() const;
     std::vector<Team> getMatchsHistory() const;
-
-    void addPointsForRanking(int points);
 
 private:
     std::string _name;
     std::string _shortName;
-    int _ranking; // Creer un objet ranking avec toutes les stats serait pas du luxe
-    int _rankingPointNb; // Va de pair avec au dessus...
+
+    int _ranking;
+    int _rankingPointNb;
+    unsigned int _playedGameNumber;
+    unsigned int _markedGoals;
+    unsigned int _takenGoals;
+    int _goalAverage;
+
     std::vector<Team> _vectorOfMatchsHistory;
 
 };

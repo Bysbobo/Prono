@@ -4,23 +4,21 @@
 
 using namespace std;
 
-Match::Match(Team teamIn, Team teamOut, int scoreIn, int scoreOut) :
+Match::Match()
+{
+}
+
+Match::Match(Team teamIn, Team teamOut, unsigned int scoreIn, unsigned int scoreOut) :
                 _homeTeam(teamIn), _outsideTeam(teamOut),
                 _homeTeamScore(scoreIn), _outsideTeamScore(scoreOut)
 {
 }
 
-int Match::winnerEqualOrLoser() const
+Team Match::prono() const
 {
-    if (_homeTeamScore > _outsideTeamScore)
-        return -1;
-    else if (_homeTeamScore == _outsideTeamScore)
-        return 0;
-    else
-        return 1;
+    return _homeTeam; // Have to finish this !!!!!!
 }
 
-// Getters
 Team Match::getHomeTeam() const
 {
     return _homeTeam;

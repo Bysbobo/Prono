@@ -14,7 +14,7 @@ SET(CMAKE_INCLUDE_CURRENT_DIR ON)
 FIND_PACKAGE(Qt5Widgets REQUIRED)
 
 # Include the Qt5 Widgets files
-INCLUDE_DIRECTORIES(${Qt5Widgets_INCLUDES})
+#INCLUDE_DIRECTORIES(${Qt5Widgets_INCLUDES})
 
 # The makefile should be verbose by default
 SET(CMAKE_VERBOSE_MAKEFILE TRUE)

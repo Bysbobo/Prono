@@ -15,11 +15,12 @@ public:
 
     bool collectTeams();
     bool collectMatchs(unsigned int untilThisJourney);
-    bool isTeamAvailable(std::string teamToCheck) const;
-    Team& stringToTeam(std::string teamName);
+    bool isTeamAvailable(const std::string teamToCheck) const;
+    Team& stringToTeam(const std::string teamName);
     void updateRanking();
     void teamsToString() const;
     void matchsToString() const;
+    void attributionOfPenality(const Team& teamToPenalize);
 
     std::vector<Team> getVectorOfTeams() const;
     std::vector<Match>  getVectorOfMatchs() const;

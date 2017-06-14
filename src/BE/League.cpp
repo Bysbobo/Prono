@@ -123,7 +123,7 @@ bool League::collectMatchs(unsigned int untilThisJourney)
     return true;
 }
 
-bool League::isTeamAvailable(string teamToCheck) const
+bool League::isTeamAvailable(const string teamToCheck) const
 {
     const unsigned int size = _vectorOfTeams.size();
     for (unsigned int i = 0; i < size; ++i)
@@ -132,7 +132,7 @@ bool League::isTeamAvailable(string teamToCheck) const
     return false;
 }
 
-Team& League::stringToTeam(std::string teamName)
+Team& League::stringToTeam(const std::string teamName)
 {
     const unsigned int size = _vectorOfTeams.size();
     for (unsigned int i = 0; i < size; ++i)
@@ -219,7 +219,11 @@ void League::matchsToString() const
     }
 }
 
-// Getters
+void attributionOfPenality(const Team& teamToPenalize)
+{
+    
+}
+
 vector<Team> League::getVectorOfTeams() const
 {
     return _vectorOfTeams;

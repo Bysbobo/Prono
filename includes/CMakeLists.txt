@@ -5,4 +5,5 @@ SET(BE_HEADERS
     BE/Team.hpp
     BE/League.hpp
     BE/Match.hpp
-    BE/Variables.hpp)
+    BE/Variables.hpp
+    BE/Prono.hpp)

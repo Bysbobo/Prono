@@ -14,11 +14,6 @@ Match::Match(Team teamIn, Team teamOut, unsigned int scoreIn, unsigned int score
 {
 }
 
-Team Match::prono() const
-{
-    return _homeTeam; // Have to finish this !!!!!!
-}
-
 Team Match::getHomeTeam() const
 {
     return _homeTeam;
@@ -37,4 +32,12 @@ unsigned int Match::getHomeTeamScore() const
 unsigned int Match::getOutsideTeamScore() const
 {
     return _outsideTeamScore;
+}
+
+// Not his real and final spot!! -> Use of Prono class after discussion with teammate
+Team Match::prono() const
+{
+    
+    
+    return _homeTeam; // Have to finish this !!!!!!
 }

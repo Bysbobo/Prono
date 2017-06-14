@@ -212,8 +212,8 @@ void League::matchsToString() const
         cout << (getVectorOfMatchs())[i].getOutsideTeam().getName();
         
         cout << "- Prono: ";
-        cout << "None for now, sorry ;) => ";
-        //(getVectorOfMatchs())[i].prono();
+        //cout << "None for now, sorry ;) => ";
+        cout << (getVectorOfMatchs())[i].prono().getName();
 
         cout << endl;
     }

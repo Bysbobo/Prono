@@ -6,7 +6,8 @@ ADD_LIBRARY(BE_LIB
     ${BE_HEADERS}
     BE/Team.cpp
     BE/League.cpp
-    BE/Match.cpp)
+    BE/Match.cpp
+    BE/Prono.cpp)
 
 # Create the executable
 ADD_EXECUTABLE(Prono main.cpp)

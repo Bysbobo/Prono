@@ -1,15 +1,10 @@
 #ifndef LEAGUE_H
 #define LEAGUE_H
 
-//#define NB_OF_TEAM      20
-//#define NB_OF_MATCH     (NB_OF_TEAM-1)*20
-//#define MATCHS          ":/Matches.txt"
-//#define INFOS           ":/Infos.txt"
-
 #include <QVector>
 
-#include "Team.h"
-#include "Match.h"
+#include "team.h"
+#include "match.h"
 
 /**
  * @brief The League class implements a league.
@@ -34,9 +29,6 @@ public:
      * @return A Team object that correspond to the team name.
      */
     Team& stringToTeam(const QString& teamName);
-    void updateRanking();
-    void teamsToString() const;
-    void matchsToString() const;
 
     /**
      * @brief A getter to the vector of teams.

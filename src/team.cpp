@@ -1,6 +1,7 @@
 #include "team.h"
 
-Team::Team()
+Team::Team(const QString &fullName, const QString &shortName):
+    aFullName(fullName),
+    aShortName(shortName)
 {
-
 }

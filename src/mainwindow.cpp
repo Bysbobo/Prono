@@ -15,11 +15,11 @@ MainWindow::MainWindow(QWidget *parent)
     createMenus();
 
     // Create the central widget
-    m_centralWdg = new CentralWidget();
-    setCentralWidget(m_centralWdg);
+    apCentralWdg = new CentralWidget();
+    setCentralWidget(apCentralWdg);
 
     // Create the about widget
-    m_aboutWdg = new About();
+    apAboutWdg = new About();
 
     // Show the status bar
     statusBar()->showMessage(tr("Ready"), 2000);
@@ -28,138 +28,138 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     // File actions
-    delete m_openAction;
-    delete m_saveAction;
-    delete m_saveAsAction;
-    delete m_exitAction;
+    delete apOpenAction;
+    delete apSaveAction;
+    delete apSaveAsAction;
+    delete apExitAction;
 
     // League actions
-    delete m_addLeagueAction;
-    delete m_editLeagueAction;
-    delete m_deleteLeagueAction;
+    delete apAddLeagueAction;
+    delete apEditLeagueAction;
+    delete apDeleteLeagueAction;
 
     // Team actions
-    delete m_addTeamAction;
-    delete m_editTeamAction;
-    delete m_deleteTeamAction;
+    delete apAddTeamAction;
+    delete apEditTeamAction;
+    delete apDeleteTeamAction;
 
     // Match actions
-    delete m_addMatchAction;
-    delete m_editMatchAction;
-    delete m_deleteMatchAction;
+    delete apAddMatchAction;
+    delete apEditMatchAction;
+    delete apDeleteMatchAction;
 
     // Help action
-    delete m_aboutAction;
-    delete m_aboutWdg;
+    delete apAboutAction;
+    delete apAboutWdg;
 
     // Menus
-    delete m_fileMenu;
-    delete m_leagueMenu;
-    delete m_teamMenu;
-    delete m_matchMenu;
-    delete m_helpMenu;
+    delete apFileMenu;
+    delete apLeagueMenu;
+    delete apTeamMenu;
+    delete apMatchMenu;
+    delete apHelpMenu;
 }
 
 void MainWindow::createActions()
 {
     // File Menu Actions
-    m_openAction = new QAction(tr("Open..."));
-    m_openAction->setStatusTip(tr("Load a new file"));
-    m_openAction->setShortcut(QKeySequence::Open);
-    QObject::connect(m_openAction, SIGNAL(triggered(bool)), this, SLOT(open()));
+    apOpenAction = new QAction(tr("Open..."));
+    apOpenAction->setStatusTip(tr("Load a new file"));
+    apOpenAction->setShortcut(QKeySequence::Open);
+    QObject::connect(apOpenAction, SIGNAL(triggered(bool)), this, SLOT(open()));
 
-    m_saveAction = new QAction(tr("Save"));
-    m_saveAction->setStatusTip(tr("Save file"));
-    m_saveAction->setShortcut(QKeySequence::Save);
-    QObject::connect(m_saveAction, SIGNAL(triggered(bool)), this, SLOT(save()));
+    apSaveAction = new QAction(tr("Save"));
+    apSaveAction->setStatusTip(tr("Save file"));
+    apSaveAction->setShortcut(QKeySequence::Save);
+    QObject::connect(apSaveAction, SIGNAL(triggered(bool)), this, SLOT(save()));
 
-    m_saveAsAction = new QAction(tr("Save As..."));
-    m_saveAsAction->setStatusTip(tr("Save file to another location/name"));
-    m_saveAsAction->setShortcut(QKeySequence::SaveAs);
-    QObject::connect(m_saveAsAction, SIGNAL(triggered(bool)), this, SLOT(saveAs()));
+    apSaveAsAction = new QAction(tr("Save As..."));
+    apSaveAsAction->setStatusTip(tr("Save file to another location/name"));
+    apSaveAsAction->setShortcut(QKeySequence::SaveAs);
+    QObject::connect(apSaveAsAction, SIGNAL(triggered(bool)), this, SLOT(saveAs()));
 
-    m_exitAction = new QAction(tr("Exit"));
-    m_exitAction->setStatusTip(tr("Exit the application"));
-    m_exitAction->setShortcut(QKeySequence::Quit);
-    QObject::connect(m_exitAction, SIGNAL(triggered(bool)), this, SLOT(exit()));
+    apExitAction = new QAction(tr("Exit"));
+    apExitAction->setStatusTip(tr("Exit the application"));
+    apExitAction->setShortcut(QKeySequence::Quit);
+    QObject::connect(apExitAction, SIGNAL(triggered(bool)), this, SLOT(exit()));
 
     // League Menu Actions
-    m_addLeagueAction = new QAction(tr("Add League..."));
-    m_addLeagueAction->setStatusTip(tr("Create a new league"));
-    QObject::connect(m_addLeagueAction, SIGNAL(triggered(bool)), this, SLOT(addLeague()));
+    apAddLeagueAction = new QAction(tr("Add League..."));
+    apAddLeagueAction->setStatusTip(tr("Create a new league"));
+    QObject::connect(apAddLeagueAction, SIGNAL(triggered(bool)), this, SLOT(addLeague()));
 
-    m_editLeagueAction = new QAction(tr("Edit League..."));
-    m_editLeagueAction->setStatusTip(tr("Edit an existing league"));
-    QObject::connect(m_editLeagueAction, SIGNAL(triggered(bool)), this, SLOT(editLeague()));
+    apEditLeagueAction = new QAction(tr("Edit League..."));
+    apEditLeagueAction->setStatusTip(tr("Edit an existing league"));
+    QObject::connect(apEditLeagueAction, SIGNAL(triggered(bool)), this, SLOT(editLeague()));
 
-    m_deleteLeagueAction = new QAction(tr("Delete League..."));
-    m_deleteLeagueAction->setStatusTip(tr("Delete an existing league"));
-    QObject::connect(m_deleteLeagueAction, SIGNAL(triggered(bool)), this, SLOT(deleteLeague()));
+    apDeleteLeagueAction = new QAction(tr("Delete League..."));
+    apDeleteLeagueAction->setStatusTip(tr("Delete an existing league"));
+    QObject::connect(apDeleteLeagueAction, SIGNAL(triggered(bool)), this, SLOT(deleteLeague()));
 
     // Team actions
-    m_addTeamAction = new QAction(tr("Add Team..."));
-    m_addTeamAction->setStatusTip(tr("Create a new team"));
-    QObject::connect(m_addTeamAction, SIGNAL(triggered(bool)), this, SLOT(addTeam()));
+    apAddTeamAction = new QAction(tr("Add Team..."));
+    apAddTeamAction->setStatusTip(tr("Create a new team"));
+    QObject::connect(apAddTeamAction, SIGNAL(triggered(bool)), this, SLOT(addTeam()));
 
-    m_editTeamAction = new QAction(tr("Edit Team..."));
-    m_editTeamAction->setStatusTip(tr("Edit an existing team"));
-    QObject::connect(m_editTeamAction, SIGNAL(triggered(bool)), this, SLOT(editTeam()));
+    apEditTeamAction = new QAction(tr("Edit Team..."));
+    apEditTeamAction->setStatusTip(tr("Edit an existing team"));
+    QObject::connect(apEditTeamAction, SIGNAL(triggered(bool)), this, SLOT(editTeam()));
 
-    m_deleteTeamAction = new QAction(tr("Delete Team..."));
-    m_deleteTeamAction->setStatusTip(tr("Delete an existing team"));
-    QObject::connect(m_deleteTeamAction, SIGNAL(triggered(bool)), this, SLOT(deleteTeam()));
+    apDeleteTeamAction = new QAction(tr("Delete Team..."));
+    apDeleteTeamAction->setStatusTip(tr("Delete an existing team"));
+    QObject::connect(apDeleteTeamAction, SIGNAL(triggered(bool)), this, SLOT(deleteTeam()));
 
     // Match actions
-    m_addMatchAction = new QAction(tr("Add Match..."));
-    m_addMatchAction->setStatusTip(tr("Create a new match"));
-    QObject::connect(m_addMatchAction, SIGNAL(triggered(bool)), this, SLOT(addMatch()));
+    apAddMatchAction = new QAction(tr("Add Match..."));
+    apAddMatchAction->setStatusTip(tr("Create a new match"));
+    QObject::connect(apAddMatchAction, SIGNAL(triggered(bool)), this, SLOT(addMatch()));
 
-    m_editMatchAction = new QAction(tr("Edit Match..."));
-    m_editMatchAction->setStatusTip(tr("Edit an existing match"));
-    QObject::connect(m_editMatchAction, SIGNAL(triggered(bool)), this, SLOT(editMatch()));
+    apEditMatchAction = new QAction(tr("Edit Match..."));
+    apEditMatchAction->setStatusTip(tr("Edit an existing match"));
+    QObject::connect(apEditMatchAction, SIGNAL(triggered(bool)), this, SLOT(editMatch()));
 
-    m_deleteMatchAction = new QAction(tr("Delete Match..."));
-    m_deleteMatchAction->setStatusTip(tr("Delete an existing match"));
-    QObject::connect(m_deleteMatchAction, SIGNAL(triggered(bool)), this, SLOT(deleteMatch()));
+    apDeleteMatchAction = new QAction(tr("Delete Match..."));
+    apDeleteMatchAction->setStatusTip(tr("Delete an existing match"));
+    QObject::connect(apDeleteMatchAction, SIGNAL(triggered(bool)), this, SLOT(deleteMatch()));
 
     // Help action
-    m_aboutAction = new QAction(tr("About..."));
-    m_aboutAction->setStatusTip(tr("About Prono application"));
-    QObject::connect(m_aboutAction, SIGNAL(triggered(bool)), this, SLOT(about()));
+    apAboutAction = new QAction(tr("About..."));
+    apAboutAction->setStatusTip(tr("About Prono application"));
+    QObject::connect(apAboutAction, SIGNAL(triggered(bool)), this, SLOT(about()));
 }
 
 void MainWindow::createMenus()
 {
     // File Menu
-    m_fileMenu = menuBar()->addMenu(tr("File"));
-    m_fileMenu->addAction(m_openAction);
-    m_fileMenu->addSeparator();
-    m_fileMenu->addAction(m_saveAction);
-    m_fileMenu->addAction(m_saveAsAction);
-    m_fileMenu->addSeparator();
-    m_fileMenu->addAction(m_exitAction);
+    apFileMenu = menuBar()->addMenu(tr("File"));
+    apFileMenu->addAction(apOpenAction);
+    apFileMenu->addSeparator();
+    apFileMenu->addAction(apSaveAction);
+    apFileMenu->addAction(apSaveAsAction);
+    apFileMenu->addSeparator();
+    apFileMenu->addAction(apExitAction);
 
     // League Menu
-    m_leagueMenu = menuBar()->addMenu(tr("League"));
-    m_leagueMenu->addAction(m_addLeagueAction);
-    m_leagueMenu->addAction(m_editLeagueAction);
-    m_leagueMenu->addAction(m_deleteLeagueAction);
+    apLeagueMenu = menuBar()->addMenu(tr("League"));
+    apLeagueMenu->addAction(apAddLeagueAction);
+    apLeagueMenu->addAction(apEditLeagueAction);
+    apLeagueMenu->addAction(apDeleteLeagueAction);
 
     // Team Menu
-    m_teamMenu = menuBar()->addMenu(tr("Team"));
-    m_teamMenu->addAction(m_addTeamAction);
-    m_teamMenu->addAction(m_editTeamAction);
-    m_teamMenu->addAction(m_deleteTeamAction);
+    apTeamMenu = menuBar()->addMenu(tr("Team"));
+    apTeamMenu->addAction(apAddTeamAction);
+    apTeamMenu->addAction(apEditTeamAction);
+    apTeamMenu->addAction(apDeleteTeamAction);
 
     // Match Menu
-    m_matchMenu = menuBar()->addMenu(tr("Match"));
-    m_matchMenu->addAction(m_addMatchAction);
-    m_matchMenu->addAction(m_editMatchAction);
-    m_matchMenu->addAction(m_deleteMatchAction);
+    apMatchMenu = menuBar()->addMenu(tr("Match"));
+    apMatchMenu->addAction(apAddMatchAction);
+    apMatchMenu->addAction(apEditMatchAction);
+    apMatchMenu->addAction(apDeleteMatchAction);
 
     // Help Menu
-    m_helpMenu = menuBar()->addMenu(tr("Help"));
-    m_helpMenu->addAction(m_aboutAction);
+    apHelpMenu = menuBar()->addMenu(tr("Help"));
+    apHelpMenu->addAction(apAboutAction);
 }
 
 void MainWindow::open()
@@ -224,5 +224,5 @@ void MainWindow::deleteMatch()
 
 void MainWindow::about()
 {
-    m_aboutWdg->show();
+    apAboutWdg->show();
 }

@@ -23,7 +23,7 @@ public:
     /**
      * @brief Destructor of TreeModel class.
      */
-    ~TreeModel() { delete m_rootItem; }
+    ~TreeModel() { delete apRootItem; }
 
     /**
      * @brief This method returns the data stored under the given role for the item referred to by the index.
@@ -92,9 +92,9 @@ private:
     void setupModelData(const QStringList &lines, TreeItem *parent);
 
     /**
-     * @brief m_rootItem : The root item of the tree.
+     * @brief apRootItem : The root item of the tree.
      */
-    TreeItem *m_rootItem;
+    TreeItem *apRootItem;
 };
 
 #endif // TREEMODEL_H

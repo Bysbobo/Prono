@@ -6,9 +6,9 @@
 
 bool League::isTeamAvailable(const QString &teamName) const
 {
-    const int size = m_vectorOfTeams.size();
+    const int size = aTeams.size();
     for (unsigned int i = 0; i < size; ++i)
-        if (m_vectorOfTeams.at(i).getName() == teamName || m_vectorOfTeams.at(i).getShortName() == teamName)
+        if (aTeams.at(i).getName() == teamName || aTeams.at(i).getShortName() == teamName)
             return true;
     return false;
 }
@@ -40,7 +40,7 @@ bool League::retrieveTeamsFromFile(const QString &fileName)
         if (line != QString(""))
         {
             const QStringList infos = line.split(QString(" "));
-            m_vectorOfTeams.push_back(Team(infos.at(0), infos.at(1)));
+            aTeams.push_back(Team(infos.at(0), infos.at(1)));
         }
     }
 
@@ -49,8 +49,9 @@ bool League::retrieveTeamsFromFile(const QString &fileName)
 
 bool League::retrieveMatchsFromFile(unsigned int untilThisJourney)
 {
+    Q_UNUSED(untilThisJourney);
     // Read and stock all matches
-    QString firstTeam, secondTeam;
+    /*QString firstTeam, secondTeam;
     unsigned int firstScore, secondScore;
     QFile matchFlow(MATCHS);
     if (!matchFlow.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -129,7 +130,7 @@ bool League::retrieveMatchsFromFile(unsigned int untilThisJourney)
 
     updateRanking();
 
-    matchFlow.close();
+    matchFlow.close();*/
 
     return true;
 }

@@ -6,10 +6,10 @@ TreeModel::TreeModel(const QString& name, const QString& data, QObject *parent) 
     // Create the root
     QList<QVariant> rootData;
     rootData << name;
-    m_rootItem = new TreeItem(rootData);
+    apRootItem = new TreeItem(rootData);
 
     // Fill the tree
-    setupModelData(data.split(tr("\n")), m_rootItem);
+    setupModelData(data.split(tr("\n")), apRootItem);
 }
 
 QVariant TreeModel::data(const QModelIndex &index, int role) const
@@ -36,7 +36,7 @@ QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int rol
 {
     // Verify the given orientation and the given role
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-        return m_rootItem->data(section);
+        return apRootItem->data(section);
 
     return QVariant();
 }
@@ -51,7 +51,7 @@ QModelIndex TreeModel::index(int row, int column, const QModelIndex &parent) con
     TreeItem *parentItem;
 
     if (!parent.isValid())
-        parentItem = m_rootItem;
+        parentItem = apRootItem;
     else
         parentItem = static_cast<TreeItem*>(parent.internalPointer());
 
@@ -74,7 +74,7 @@ QModelIndex TreeModel::parent(const QModelIndex &index) const
     TreeItem *parentItem = indexItem->parentItem();
 
     // Verify that the parent item is not the root
-    if (parentItem == m_rootItem)
+    if (parentItem == apRootItem)
         return QModelIndex();
 
     // Use the createIndex() function to create a model index to be returned
@@ -91,7 +91,7 @@ int TreeModel::rowCount(const QModelIndex &parent) const
     TreeItem *parentItem;
 
     if (!parent.isValid())
-        parentItem = m_rootItem;
+        parentItem = apRootItem;
     else
         parentItem = static_cast<TreeItem*>(parent.internalPointer());
 
@@ -106,7 +106,7 @@ int TreeModel::columnCount(const QModelIndex &parent) const
         return static_cast<TreeItem*>(parent.internalPointer())->columnCount();
 
     // Otherwise the number of columns is determined from the root item
-    return m_rootItem->columnCount();
+    return apRootItem->columnCount();
 }
 
 void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)

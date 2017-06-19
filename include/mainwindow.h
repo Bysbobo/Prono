@@ -108,102 +108,102 @@ private:
 
     // Menus
     /**
-     * @brief m_fileMenu : The file menu.
+     * @brief apFileMenu : The file menu.
      */
-    QMenu *m_fileMenu;
+    QMenu *apFileMenu;
     /**
-     * @brief m_leagueMenu : The league menu.
+     * @brief apLeagueMenu : The league menu.
      */
-    QMenu *m_leagueMenu;
+    QMenu *apLeagueMenu;
     /**
-     * @brief m_teamMenu : The team menu.
+     * @brief apTeamMenu : The team menu.
      */
-    QMenu *m_teamMenu;
+    QMenu *apTeamMenu;
     /**
-     * @brief m_matchMenu : The match menu.
+     * @brief apMatchMenu : The match menu.
      */
-    QMenu *m_matchMenu;
+    QMenu *apMatchMenu;
     /**
-     * @brief m_helpMenu : The help menu.
+     * @brief apHelpMenu : The help menu.
      */
-    QMenu *m_helpMenu;
+    QMenu *apHelpMenu;
 
     // File actions
     /**
-     * @brief m_openAction : The open action.
+     * @brief apOpenAction : The open action.
      */
-    QAction *m_openAction;
+    QAction *apOpenAction;
     /**
-     * @brief m_saveAction : The save action.
+     * @brief apSaveAction : The save action.
      */
-    QAction *m_saveAction;
+    QAction *apSaveAction;
     /**
-     * @brief m_saveAsAction : The save as action.
+     * @brief apSaveAsAction : The save as action.
      */
-    QAction *m_saveAsAction;
+    QAction *apSaveAsAction;
     /**
-     * @brief m_exitAction : The exit action.
+     * @brief apExitAction : The exit action.
      */
-    QAction *m_exitAction;
+    QAction *apExitAction;
 
     // League actions
     /**
-     * @brief m_addLeagueAction : The add league action.
+     * @brief apAddLeagueAction : The add league action.
      */
-    QAction *m_addLeagueAction;
+    QAction *apAddLeagueAction;
     /**
-     * @brief m_editLeagueAction : The edit league action.
+     * @brief apEditLeagueAction : The edit league action.
      */
-    QAction *m_editLeagueAction;
+    QAction *apEditLeagueAction;
     /**
-     * @brief m_deleteLeagueAction : The delete league action.
+     * @brief apDeleteLeagueAction : The delete league action.
      */
-    QAction *m_deleteLeagueAction;
+    QAction *apDeleteLeagueAction;
 
     // Team actions
     /**
-     * @brief m_addTeamAction : The add team action.
+     * @brief apAddTeamAction : The add team action.
      */
-    QAction *m_addTeamAction;
+    QAction *apAddTeamAction;
     /**
-     * @brief m_editTeamAction : The edit team action.
+     * @brief apEditTeamAction : The edit team action.
      */
-    QAction *m_editTeamAction;
+    QAction *apEditTeamAction;
     /**
-     * @brief m_deleteTeamAction : The delete team action.
+     * @brief apDeleteTeamAction : The delete team action.
      */
-    QAction *m_deleteTeamAction;
+    QAction *apDeleteTeamAction;
 
     // Match actions
     /**
-     * @brief m_addMatchAction : The add match action.
+     * @brief apAddMatchAction : The add match action.
      */
-    QAction *m_addMatchAction;
+    QAction *apAddMatchAction;
     /**
-     * @brief m_editMatchAction : The edit match action.
+     * @brief apEditMatchAction : The edit match action.
      */
-    QAction *m_editMatchAction;
+    QAction *apEditMatchAction;
     /**
-     * @brief m_deleteMatchAction : The delete match action.
+     * @brief apDeleteMatchAction : The delete match action.
      */
-    QAction *m_deleteMatchAction;
+    QAction *apDeleteMatchAction;
 
     // Help action
     /**
-     * @brief m_aboutAction : The about action.
+     * @brief apAboutAction : The about action.
      */
-    QAction *m_aboutAction;
+    QAction *apAboutAction;
 
     /**
-     * @brief m_aboutWdg : The about widget that is shown when the about action is clicked.
+     * @brief apAboutWdg : The about widget that is shown when the about action is clicked.
      */
-    About *m_aboutWdg;
+    About *apAboutWdg;
 
     // Central Widget
     /**
-     * @brief m_centralWdg : The central widget of the main window.
+     * @brief apCentralWdg : The central widget of the main window.
      */
-    CentralWidget *m_centralWdg;
+    CentralWidget *apCentralWdg;
 };
 
 #endif // MAINWINDOW_H

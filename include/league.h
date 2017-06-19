@@ -34,12 +34,12 @@ public:
      * @brief A getter to the vector of teams.
      * @return The vector of teams in the league as a constant.
      */
-    QVector<Team> getVectorOfTeams() const { return m_vectorOfTeams; }
+    QVector<Team> getVectorOfTeams() const { return aTeams; }
     /**
      * @brief A getter to the vector of teams.
      * @return The reference to the vector of teams in the league.
      */
-    QVector<Team>& getVectorOfTeams() { return m_vectorOfTeams; }
+    QVector<Team>& getVectorOfTeams() { return aTeams; }
 
 private:
     /**
@@ -51,7 +51,7 @@ private:
 
     bool retrieveMatchsFromFile(unsigned int untilThisJourney);
 
-    QVector<Team> m_vectorOfTeams;
+    QVector<Team> aTeams;
 };
 
 #endif // LEAGUE_H

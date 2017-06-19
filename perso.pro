@@ -11,7 +11,6 @@ INCLUDEPATH += include
 SOURCES += src/main.cpp\
     src/mainwindow.cpp \
     src/about.cpp \
-    src/dockwidget.cpp \
     src/centralwidget.cpp \
     src/treemodel.cpp \
     src/league.cpp \
@@ -20,7 +19,6 @@ SOURCES += src/main.cpp\
 
 HEADERS  += include/mainwindow.h \
     include/about.h \
-    include/dockwidget.h \
     include/centralwidget.h \
     include/treeitem.h \
     include/treemodel.h \

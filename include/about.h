@@ -21,31 +21,31 @@ public:
 
 private:
     /**
-     * @brief m_mainLayout : The main layout of the About widget.
+     * @brief apMainLayout : The main layout of the About widget.
      */
-    QGridLayout *m_mainLayout;
+    QGridLayout *apMainLayout;
 
     /**
-     * @brief m_appName : A label of the application name.
+     * @brief apAppName : A label of the application name.
      */
-    QLabel *m_appName;
+    QLabel *apAppName;
     /**
-     * @brief m_builtOn : A label of the last building date.
+     * @brief apBuiltOn : A label of the last building date.
      */
-    QLabel *m_builtOn;
+    QLabel *apBuiltOn;
     /**
-     * @brief m_copyright : A label of the copyright.
+     * @brief apCopyright : A label of the copyright.
      */
-    QLabel *m_copyright;
+    QLabel *apCopyright;
     /**
-     * @brief m_law : A label of the law.
+     * @brief apLaw : A label of the law.
      */
-    QLabel *m_law;
+    QLabel *apLaw;
 
     /**
-     * @brief m_closeBtn : Button to close the About widget.
+     * @brief apCloseBtn : Button to close the About widget.
      */
-    QPushButton *m_closeBtn;
+    QPushButton *apCloseBtn;
 };
 
 #endif // ABOUT_H

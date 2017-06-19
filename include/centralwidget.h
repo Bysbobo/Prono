@@ -23,39 +23,39 @@ public:
 private:
     // The tree widgets
     /**
-     * @brief m_leagueModel : The tree model of the leagues.
+     * @brief apLeagueModel : The tree model of the leagues.
      */
-    TreeModel *m_leagueModel;
+    TreeModel *apLeagueModel;
     /**
-     * @brief m_teamModel : The tree model of the teams.
+     * @brief apTeamModel : The tree model of the teams.
      */
-    TreeModel *m_teamModel;
+    TreeModel *apTeamModel;
     /**
-     * @brief m_matchModel : The tree model of the matches.
+     * @brief apMatchModel : The tree model of the matches.
      */
-    TreeModel *m_matchModel;
+    TreeModel *apMatchModel;
 
     /**
-     * @brief m_leagueView : The view of the tree model of the leagues.
+     * @brief apLeagueView : The view of the tree model of the leagues.
      */
-    QTreeView *m_leagueView;
+    QTreeView *apLeagueView;
     /**
-     * @brief m_teamView : The view of the tree model of the teams.
+     * @brief apTeamView : The view of the tree model of the teams.
      */
-    QTreeView *m_teamView;
+    QTreeView *apTeamView;
     /**
-     * @brief m_matchView : The view of the tree model of the matches.
+     * @brief apMatchView : The view of the tree model of the matches.
      */
-    QTreeView *m_matchView;
+    QTreeView *apMatchView;
     /**
-     * @brief m_treeViewLayout : The layout of the trees views.
+     * @brief apTreeViewLayout : The layout of the trees views.
      */
-    QVBoxLayout *m_treeViewLayout;
+    QVBoxLayout *apTreeViewLayout;
 
     /**
-     * @brief m_mainLayout : The main layout of the widget.
+     * @brief apMainLayout : The main layout of the widget.
      */
-    QHBoxLayout *m_mainLayout;
+    QHBoxLayout *apMainLayout;
 };
 
 #endif // CENTRALWIDGET_H

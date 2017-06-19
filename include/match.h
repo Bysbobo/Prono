@@ -6,6 +6,7 @@
 class Match
 {
 public:
+    Match() : aPlayed(false) {}
     Match(const QString &homeTeam, const QString &awayTeam);
     Match(const QString &homeTeam, const QString &awayTeam, unsigned int homeScore, unsigned int awayScore);
 

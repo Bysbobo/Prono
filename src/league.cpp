@@ -1,25 +1,18 @@
 #include <QFile>
 #include <QTextStream>
 #include <QString>
+#include <QStringList>
+#include <QDebug>
 
 #include "league.h"
 
 bool League::isTeamAvailable(const QString &teamName) const
 {
     const int size = aTeams.size();
-    for (unsigned int i = 0; i < size; ++i)
-        if (aTeams.at(i).getName() == teamName || aTeams.at(i).getShortName() == teamName)
+    for (int i = 0; i < size; ++i)
+        if (aTeams.at(i).getFullName() == teamName || aTeams.at(i).getShortName() == teamName)
             return true;
     return false;
-}
-
-Team& League::stringToTeam(const QString &teamName)
-{
-    Q_ASSERT(isTeamAvailable(teamName));
-    const unsigned int size = _vectorOfTeams.size();
-    for (unsigned int i = 0; i < size; ++i)
-        if (_vectorOfTeams[i].getName() == teamName || _vectorOfTeams[i].getShortName() == teamName)
-            return _vectorOfTeams[i];
 }
 
 bool League::retrieveTeamsFromFile(const QString &fileName)

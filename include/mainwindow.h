@@ -8,7 +8,6 @@
 #include <QScrollArea>
 #include <QDockWidget>
 #include "about.h"
-#include "dockwidget.h"
 #include "centralwidget.h"
 
 /**

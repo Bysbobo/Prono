@@ -1,6 +1,6 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-    <file>Info.txt</file>
-    <file>Matches.txt</file>
+    <file>database/Infos.txt</file>
+    <file>database/Matches.txt</file>
 </qresource>
 </RCC>

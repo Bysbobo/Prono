@@ -8,6 +8,7 @@
 class Team
 {
 public:
+    Team() {}
     Team(const QString &fullName, const QString &shortName);
 
     inline QString getFullName() const { return aFullName; }

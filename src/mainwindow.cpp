@@ -63,67 +63,67 @@ MainWindow::~MainWindow()
 void MainWindow::createActions()
 {
     // File Menu Actions
-    apOpenAction = new QAction(tr("Open..."));
+    apOpenAction = new QAction(tr("Open..."), this);
     apOpenAction->setStatusTip(tr("Load a new file"));
     apOpenAction->setShortcut(QKeySequence::Open);
     QObject::connect(apOpenAction, SIGNAL(triggered(bool)), this, SLOT(open()));
 
-    apSaveAction = new QAction(tr("Save"));
+    apSaveAction = new QAction(tr("Save"), this);
     apSaveAction->setStatusTip(tr("Save file"));
     apSaveAction->setShortcut(QKeySequence::Save);
     QObject::connect(apSaveAction, SIGNAL(triggered(bool)), this, SLOT(save()));
 
-    apSaveAsAction = new QAction(tr("Save As..."));
+    apSaveAsAction = new QAction(tr("Save As..."), this);
     apSaveAsAction->setStatusTip(tr("Save file to another location/name"));
     apSaveAsAction->setShortcut(QKeySequence::SaveAs);
     QObject::connect(apSaveAsAction, SIGNAL(triggered(bool)), this, SLOT(saveAs()));
 
-    apExitAction = new QAction(tr("Exit"));
+    apExitAction = new QAction(tr("Exit"), this);
     apExitAction->setStatusTip(tr("Exit the application"));
     apExitAction->setShortcut(QKeySequence::Quit);
     QObject::connect(apExitAction, SIGNAL(triggered(bool)), this, SLOT(exit()));
 
     // League Menu Actions
-    apAddLeagueAction = new QAction(tr("Add League..."));
+    apAddLeagueAction = new QAction(tr("Add League..."), this);
     apAddLeagueAction->setStatusTip(tr("Create a new league"));
     QObject::connect(apAddLeagueAction, SIGNAL(triggered(bool)), this, SLOT(addLeague()));
 
-    apEditLeagueAction = new QAction(tr("Edit League..."));
+    apEditLeagueAction = new QAction(tr("Edit League..."), this);
     apEditLeagueAction->setStatusTip(tr("Edit an existing league"));
     QObject::connect(apEditLeagueAction, SIGNAL(triggered(bool)), this, SLOT(editLeague()));
 
-    apDeleteLeagueAction = new QAction(tr("Delete League..."));
+    apDeleteLeagueAction = new QAction(tr("Delete League..."), this);
     apDeleteLeagueAction->setStatusTip(tr("Delete an existing league"));
     QObject::connect(apDeleteLeagueAction, SIGNAL(triggered(bool)), this, SLOT(deleteLeague()));
 
     // Team actions
-    apAddTeamAction = new QAction(tr("Add Team..."));
+    apAddTeamAction = new QAction(tr("Add Team..."), this);
     apAddTeamAction->setStatusTip(tr("Create a new team"));
     QObject::connect(apAddTeamAction, SIGNAL(triggered(bool)), this, SLOT(addTeam()));
 
-    apEditTeamAction = new QAction(tr("Edit Team..."));
+    apEditTeamAction = new QAction(tr("Edit Team..."), this);
     apEditTeamAction->setStatusTip(tr("Edit an existing team"));
     QObject::connect(apEditTeamAction, SIGNAL(triggered(bool)), this, SLOT(editTeam()));
 
-    apDeleteTeamAction = new QAction(tr("Delete Team..."));
+    apDeleteTeamAction = new QAction(tr("Delete Team..."), this);
     apDeleteTeamAction->setStatusTip(tr("Delete an existing team"));
     QObject::connect(apDeleteTeamAction, SIGNAL(triggered(bool)), this, SLOT(deleteTeam()));
 
     // Match actions
-    apAddMatchAction = new QAction(tr("Add Match..."));
+    apAddMatchAction = new QAction(tr("Add Match..."), this);
     apAddMatchAction->setStatusTip(tr("Create a new match"));
     QObject::connect(apAddMatchAction, SIGNAL(triggered(bool)), this, SLOT(addMatch()));
 
-    apEditMatchAction = new QAction(tr("Edit Match..."));
+    apEditMatchAction = new QAction(tr("Edit Match..."), this);
     apEditMatchAction->setStatusTip(tr("Edit an existing match"));
     QObject::connect(apEditMatchAction, SIGNAL(triggered(bool)), this, SLOT(editMatch()));
 
-    apDeleteMatchAction = new QAction(tr("Delete Match..."));
+    apDeleteMatchAction = new QAction(tr("Delete Match..."), this);
     apDeleteMatchAction->setStatusTip(tr("Delete an existing match"));
     QObject::connect(apDeleteMatchAction, SIGNAL(triggered(bool)), this, SLOT(deleteMatch()));
 
     // Help action
-    apAboutAction = new QAction(tr("About..."));
+    apAboutAction = new QAction(tr("About..."), this);
     apAboutAction->setStatusTip(tr("About Prono application"));
     QObject::connect(apAboutAction, SIGNAL(triggered(bool)), this, SLOT(about()));
 }

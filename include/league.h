@@ -23,12 +23,6 @@ public:
      * @return True if the team is in the league, false otherwise.
      */
     bool isTeamAvailable(const QString& teamName) const;
-    /**
-     * @brief Transform a team name into a team. The team should be in the league.
-     * @param teamName : The team name to be transformed.
-     * @return A Team object that correspond to the team name.
-     */
-    Team& stringToTeam(const QString& teamName);
 
     /**
      * @brief A getter to the vector of teams.

@@ -45,6 +45,9 @@ private:
 
     bool retrieveMatchsFromFile(unsigned int untilThisJourney);
 
+    /**
+     * @brief aTeams : The vector of teams of the league.
+     */
     QVector<Team> aTeams;
 };
 

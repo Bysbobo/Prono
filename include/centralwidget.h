@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include "treemodel.h"
+#include "league.h"
 
 /**
  * @brief The CentralWidget class implements the central widget of the main window.
@@ -52,6 +53,10 @@ private:
      */
     QVBoxLayout *apTreeViewLayout;
 
+    // The league. TODO : put this as a vector.
+    League aLeague;
+
+    // The main Layout
     /**
      * @brief apMainLayout : The main layout of the widget.
      */

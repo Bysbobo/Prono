@@ -17,6 +17,11 @@ public:
      */
     League() {}
 
+    League(const QString& txtFileName)
+    {
+        retrieveTeamsFromFile(txtFileName);
+    }
+
     /**
      * @brief Verify that a team is available in the league.
      * @param teamName : The name of the team to be verified. It can be the full name or the short name of the team.

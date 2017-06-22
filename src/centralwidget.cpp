@@ -1,6 +1,7 @@
 #include "centralwidget.h"
 
-CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent)
+CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent),
+    aLeague(tr(":/database/Infos.txt"))
 {
     // Create the trees models
     apLeagueModel = new TreeModel(tr("Leagues"), tr("League 1"));

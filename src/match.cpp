@@ -7,13 +7,17 @@ Match::Match(const QString &homeTeam, const QString &awayTeam) :
 {
 }
 
-Match::Match(const QString &homeTeam, const QString &awayTeam, unsigned int homeScore, unsigned int awayScore) :
+Match::Match(const QString& season, uint8_t day, const QString &homeTeam, const QString &awayTeam, unsigned int homeScore, unsigned int awayScore) :
+    aID(""),
+    aSeason(season),
     aPlayed(true),
+    aDay(day),
     aHomeTeam(homeTeam),
     aAwayTeam(awayTeam),
     aHomeScore(homeScore),
     aAwayScore(awayScore)
 {
+    aID.append(season).append(QString::number(day)).append(homeTeam).append(awayTeam);
 }
 
 bool Match::doesHomeTeamWin()

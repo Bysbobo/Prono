@@ -18,13 +18,30 @@ public:
     Match(const QString &homeTeam, const QString &awayTeam);
     /**
      * @brief A constructor that initialise the name of the home team and the away team and the score if the game has been played.
+     * @param season : The season of the match.
+     * @param day : The day number of the match.
      * @param homeTeam : The short name of the home team.
      * @param awayTeam : The short name of the away team.
      * @param homeScore : The score of the home team.
      * @param awayScore : The score of the away team.
      */
-    Match(const QString &homeTeam, const QString &awayTeam, unsigned int homeScore, unsigned int awayScore);
+    Match(const QString& season, uint8_t day, const QString &homeTeam, const QString &awayTeam, unsigned int homeScore, unsigned int awayScore);
 
+    /**
+     * @brief A getter to the ID of the match.
+     * @return The ID of the match.
+     */
+    inline QString getID() const { return aID; }
+    /**
+     * @brief A getter to the season of the match.
+     * @return The season of the match.
+     */
+    inline QString getSeason() const { return aSeason; }
+    /**
+     * @brief A setter to the season.
+     * @param season : The season of the match.
+     */
+    inline void setSeason(const QString& season) { aSeason = season; }
     /**
      * @brief This method indicates whether the game has been played or not.
      * @return True if the gams has been played, false otherwise.
@@ -54,9 +71,22 @@ public:
 
 private:
     /**
+     * @brief aID : A unique ID.
+     */
+    QString aID;
+    /**
+     * @brief aSeason : The season of the match. Example : "2016-2017".
+     */
+    QString aSeason;
+    /**
      * @brief aPlayed : Indicates whether the game has been played or not.
      */
     bool aPlayed;
+    /**
+     * @brief aDay : The day number of the match.
+     */
+    uint8_t aDay;
+
     /**
      * @brief aHomeTeam : The short name of the home team.
      */

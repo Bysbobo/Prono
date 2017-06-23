@@ -78,8 +78,16 @@ bool League::retrieveMatchsFromFile(const QString& fileName)
                 const int nbMatches = matches.size();
                 for (int j = 0; j < nbMatches; ++j)
                 {
+                    // Create the match
                     const QStringList infos = matches.at(j).split(QString(" "));
-                    aMatches.push_back(Match(QString("2016-2017"), day, infos.at(0), infos.at(3), infos.at(1).toInt(), infos.at(2).toInt()));
+                    const Match m(QString("2016-2017"), day, infos.at(0), infos.at(3), infos.at(1).toInt(), infos.at(2).toInt());
+
+                    // Add the match to the match list of the league
+                    aMatches.push_back(m);
+
+                    // Add the match to the teams involved in it
+                    aTeams[getTeamIndex(infos.at(0))].addMatch(m);
+                    aTeams[getTeamIndex(infos.at(3))].addMatch(m);
                 }
             }
             ++i;

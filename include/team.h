@@ -40,6 +40,11 @@ public:
      * @return A reference to the vector of matches.
      */
     inline QVector<Match>& getMatches() { return aMatches; }
+    /**
+     * @brief This method adds a match to the team.
+     * @param match : The match to add to the team.
+     */
+    inline void addMatch(const Match& match) { aMatches.push_back(match); }
 
 private:
     /**

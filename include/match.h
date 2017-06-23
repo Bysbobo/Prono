@@ -52,6 +52,26 @@ public:
      * @param played : The given status of the game. By default this argument is set to true.
      */
     inline void setGamePlayed(bool played=true) { aPlayed = played; }
+    /**
+     * @brief A getter to the home team name.
+     * @return A Qstring of the home team name.
+     */
+    inline QString getHomeTeam() const { return aHomeTeam; }
+    /**
+     * @brief A getter to the away team name.
+     * @return A Qstring of the away team name.
+     */
+    inline QString getAwayTeam() const { return aAwayTeam; }
+    /**
+     * @brief A getter to the home team score.
+     * @return An unsigned int of the home team score.
+     */
+    inline unsigned int getHomeTeamScore() const { Q_ASSERT(aPlayed); return aHomeScore; }
+    /**
+     * @brief A getter to the away team score.
+     * @return An unsigned int of the away team score.
+     */
+    inline unsigned int getAwayTeamScore() const { Q_ASSERT(aPlayed); return aAwayScore; }
 
     /**
      * @brief This method indicates whether the home team won or not.

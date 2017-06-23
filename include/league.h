@@ -1,6 +1,7 @@
 #ifndef LEAGUE_H
 #define LEAGUE_H
 
+#include <QObject>
 #include <QVector>
 
 #include "team.h"
@@ -18,10 +19,12 @@ public:
     League() {}
     /**
      * @brief Contructor that initializes the vector of teams from a txt file.
+     * @param name : the name of the league.
      * @param txtFileName : the file from which the teams will be initialized.
      * @param txtMatchesFileName : The file from which the matches will be initialized.
      */
-    League(const QString& txtTeamsFileName, const QString& txtMatchesFileName)
+    League(const QString& name, const QString& txtTeamsFileName, const QString& txtMatchesFileName) :
+        aName(name)
     {
         retrieveTeamsFromFile(txtTeamsFileName);
         retrieveMatchsFromFile(txtMatchesFileName);
@@ -39,6 +42,16 @@ public:
      * @return The index of a given team in the vector of teams of the league. If the team does not exist -1 is returned.
      */
     int getTeamIndex(const QString& teamName) const;
+    /**
+     * @brief A getter to the name of the league.
+     * @return The name of the league.
+     */
+    inline QString getName() const { return aName; }
+    /**
+     * @brief A setter to the name of the league.
+     * @param name : The name of the league.
+     */
+    inline void setName(const QString& name) { aName = name; }
 
     /**
      * @brief A getter to the vector of teams.
@@ -50,6 +63,11 @@ public:
      * @return The reference to the vector of teams in the league.
      */
     QVector<Team>& getVectorOfTeams() { return aTeams; }
+    /**
+     * @brief This method creates a QString in which the list of the league teams is defined as they should appear in the tree view.
+     * @return A QString in which the list of the league teams is defined as they should appear in the tree view.
+     */
+    QString getListOfTeamsForTree() const;
 
 private:
     /**
@@ -65,6 +83,10 @@ private:
      */
     bool retrieveMatchsFromFile(const QString& fileName);
 
+    /**
+     * @brief aName : The name of the league.
+     */
+    QString aName;
     /**
      * @brief aTeams : The vector of teams of the league.
      */

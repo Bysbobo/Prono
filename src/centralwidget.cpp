@@ -1,18 +1,23 @@
 #include "centralwidget.h"
 
-CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent),
-    aLeague(tr(":/database/Infos.txt"), tr(":/database/Matches.txt"))
+CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent)
 {
+    // Create a league and add it to the list
+    League league(tr("League 1"), tr(":/database/Infos.txt"), tr(":/database/Matches.txt"));
+    aLeagues.push_back(league);
+
     // Create the trees models
-    apLeagueModel = new TreeModel(tr("Leagues"), tr("League 1"));
-    apTeamModel = new TreeModel(tr("Teams"), tr("PSG\nLYO"));
-    apMatchModel = new TreeModel(tr("Matches"), tr("PSG - LYO"));
+    apLeagueModel = new TreeModel(tr("Leagues"), getListOfLeaguesForTree());
+    apTeamModel = new TreeModel(tr("Teams"), tr(""));
+    apMatchModel = new TreeModel(tr("Matches"), tr(""));
 
     // Create the trees view
     apLeagueView = new QTreeView();
     apLeagueView->setModel(apLeagueModel);
+    connect(apLeagueView, SIGNAL(clicked(QModelIndex)), this, SLOT(setTeams(QModelIndex)));
     apTeamView = new QTreeView();
     apTeamView->setModel(apTeamModel);
+    connect(apTeamView, SIGNAL(clicked(QModelIndex)), this, SLOT(setMatches(QModelIndex)));
     apMatchView = new QTreeView();
     apMatchView->setModel(apMatchModel);
 
@@ -28,4 +33,53 @@ CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent),
     apMainLayout->addStretch();
     apMainLayout->addStretch();
     setLayout(apMainLayout);
+}
+
+void CentralWidget::setTeams(const QModelIndex &index)
+{
+    const QString leagueName = apLeagueModel->data(index, Qt::DisplayRole).toString();
+    const int size = aLeagues.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (aLeagues[i].getName() == leagueName)
+        {
+            TreeModel* oldTeamModel = apTeamModel;
+            apTeamModel = new TreeModel(tr("Teams"), aLeagues[i].getListOfTeamsForTree());
+            apTeamView->setModel(apTeamModel);
+            delete oldTeamModel;
+            return;
+        }
+    }
+}
+
+void CentralWidget::setMatches(const QModelIndex &index)
+{
+    const QString leagueName = apLeagueModel->data(apLeagueView->currentIndex(), Qt::DisplayRole).toString();
+    const int size = aLeagues.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (aLeagues[i].getName() == leagueName)
+        {
+            TreeModel* oldMatchModel = apMatchModel;
+            const QString teamName = apTeamModel->data(index, Qt::DisplayRole).toString().split(tr(" ")).at(0);
+            const int teamIndex = aLeagues[i].getTeamIndex(teamName);
+            apMatchModel = new TreeModel(tr("Matches"), aLeagues[i].getVectorOfTeams()
+                                         .at(teamIndex)
+                                         .getListOfMatchesForTree());
+            apMatchView->setModel(apMatchModel);
+            delete oldMatchModel;
+            return;
+        }
+    }
+}
+
+QString CentralWidget::getListOfLeaguesForTree() const
+{
+    QString ret("");
+    if (aLeagues.size() > 0)
+        ret.append(aLeagues.at(0).getName());
+    const int size = aLeagues.size();
+    for (int i = 1; i < size; ++i)
+        ret.append(QString("\n")).append(aLeagues.at(i).getName());
+    return ret;
 }

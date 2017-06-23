@@ -21,7 +21,24 @@ public:
      */
     explicit CentralWidget(QWidget *parent = 0);
 
+public slots:
+    /**
+     * @brief This slot updates the teams list in the tree view following a change of a league.
+     * @param index : The index of the league.
+     */
+    void setTeams(const QModelIndex &index);
+    /**
+     * @brief This slot updates the matches list in the tree view following a change of a league.
+     * @param index : The index of the league.
+     */
+    void setMatches(const QModelIndex &index);
+
 private:
+    /**
+     * @brief This method creates a QString in which the list of the leagues is defined as they should appear in the tree view.
+     * @return A QString in which the list of the leagues is defined as they should appear in the tree view.
+     */
+    QString getListOfLeaguesForTree() const;
     // The tree widgets
     /**
      * @brief apLeagueModel : The tree model of the leagues.
@@ -53,8 +70,11 @@ private:
      */
     QVBoxLayout *apTreeViewLayout;
 
-    // The league. TODO : put this as a vector.
-    League aLeague;
+    // The leagues.
+    /**
+     * @brief aLeagues : The vector of all the leagues.
+     */
+    QVector<League> aLeagues;
 
     // The main Layout
     /**

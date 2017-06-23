@@ -3,7 +3,6 @@
 #include <QString>
 #include <QStringList>
 #include <QDebug>
-
 #include "league.h"
 
 bool League::isTeamAvailable(const QString &teamName) const
@@ -22,6 +21,17 @@ int League::getTeamIndex(const QString& teamName) const
         if (aTeams.at(i).getFullName() == teamName || aTeams.at(i).getShortName() == teamName)
             return i;
     return -1;
+}
+
+QString League::getListOfTeamsForTree() const
+{
+    QString ret("");
+    if (aTeams.size() > 0)
+        ret.append(aTeams.at(0).getFullName()).append(QString(" - ")).append(aTeams.at(0).getShortName());
+    const int size = aTeams.size();
+    for (int i = 1; i < size; ++i)
+        ret.append(QString("\n")).append(aTeams.at(i).getFullName()).append(QString(" - ")).append(aTeams.at(i).getShortName());
+    return ret;
 }
 
 bool League::retrieveTeamsFromFile(const QString &fileName)
@@ -45,6 +55,8 @@ bool League::retrieveTeamsFromFile(const QString &fileName)
             aTeams.push_back(Team(infos.at(0), infos.at(1)));
         }
     }
+
+    qSort(aTeams);
 
     return true;
 }

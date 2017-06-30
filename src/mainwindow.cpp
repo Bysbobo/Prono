@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QMenuBar>
 #include <QStatusBar>
+#include "addleaguewidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -179,7 +180,11 @@ void MainWindow::saveAs()
 
 void MainWindow::addLeague()
 {
-
+    // Create the add league widget
+    AddLeagueWidget *wdg = new AddLeagueWidget();
+    wdg->show();
+    wdg->setWindowModality(Qt::ApplicationModal);
+    connect(wdg, SIGNAL(leagueToBeCreated(QString)), apCentralWdg, SLOT(createLeague(QString)));
 }
 
 void MainWindow::editLeague()

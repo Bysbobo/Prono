@@ -19,7 +19,8 @@ SOURCES += src/main.cpp\
     src/treemodel.cpp \
     src/league.cpp \
     src/match.cpp \
-    src/team.cpp
+    src/team.cpp \
+    src/addleaguewidget.cpp
 
 HEADERS  += include/mainwindow.h \
     include/about.h \
@@ -28,7 +29,8 @@ HEADERS  += include/mainwindow.h \
     include/treemodel.h \
     include/league.h \
     include/match.h \
-    include/team.h
+    include/team.h \
+    include/addleaguewidget.h
 
 DISTFILES += \
     resources/database/Infos.txt \

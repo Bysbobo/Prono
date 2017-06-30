@@ -73,6 +73,20 @@ void CentralWidget::setMatches(const QModelIndex &index)
     }
 }
 
+void CentralWidget::createLeague(const QString &name)
+{
+    // Create the new league and add it to the vector
+    League l;
+    l.setName(name);
+    aLeagues.push_back(l);
+
+    // Refresh the league model
+    TreeModel *oldModel = apLeagueModel;
+    apLeagueModel = new TreeModel(tr("Leagues"), getListOfLeaguesForTree());
+    apLeagueView->setModel(apLeagueModel);
+    delete oldModel;
+}
+
 QString CentralWidget::getListOfLeaguesForTree() const
 {
     QString ret("");

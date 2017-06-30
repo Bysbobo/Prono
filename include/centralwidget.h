@@ -32,6 +32,11 @@ public slots:
      * @param index : The index of the league.
      */
     void setMatches(const QModelIndex &index);
+    /**
+     * @brief This method creates a new league.
+     * @param name : The name of the new league to be created.
+     */
+    void createLeague(const QString &name);
 
 private:
     /**
@@ -39,6 +44,7 @@ private:
      * @return A QString in which the list of the leagues is defined as they should appear in the tree view.
      */
     QString getListOfLeaguesForTree() const;
+
     // The tree widgets
     /**
      * @brief apLeagueModel : The tree model of the leagues.

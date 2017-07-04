@@ -100,7 +100,7 @@ void CentralWidget::createTeam(const QString &shortName, const QString &fullName
         while (j < lSize && !found) {
             if (lNames.at(i) == aLeagues.at(j).getName())
             {
-                aLeagues[i].getVectorOfTeams().push_back(t);
+                aLeagues[j].getVectorOfTeams().push_back(t);
                 found = true;
             }
             ++j;

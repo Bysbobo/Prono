@@ -87,6 +87,35 @@ void CentralWidget::createLeague(const QString &name)
     delete oldModel;
 }
 
+void CentralWidget::createTeam(const QString &shortName, const QString &fullName, const QVector<QString> lNames)
+{
+    // Create the new team and add it to the leagues
+    Team t(fullName, shortName);
+    const int size = lNames.size();
+    for (int i = 0; i < size; ++i)
+    {
+        int j = 0;
+        const int lSize = aLeagues.size();
+        bool found = false;
+        while (j < lSize && !found) {
+            if (lNames.at(i) == aLeagues.at(j).getName())
+            {
+                aLeagues[i].getVectorOfTeams().push_back(t);
+                found = true;
+            }
+            ++j;
+        }
+    }
+
+    // Refresh the team model
+    if (lNames.contains(apLeagueModel->data(apLeagueView->currentIndex(), Qt::DisplayRole).toString()))
+    {
+        const QModelIndex selectedIndex = apTeamView->currentIndex();
+        setTeams(apLeagueView->currentIndex());
+        apTeamView->setCurrentIndex(selectedIndex);
+    }
+}
+
 QString CentralWidget::getListOfLeaguesForTree() const
 {
     QString ret("");

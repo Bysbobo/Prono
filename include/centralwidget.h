@@ -20,6 +20,11 @@ public:
      * @param parent : The widget parent of the central widget.
      */
     explicit CentralWidget(QWidget *parent = 0);
+    /**
+     * @brief A getter to the vector of leagues.
+     * @return A QVector containing the leagues.
+     */
+    QVector<League> getLeagues() const { return aLeagues; }
 
 public slots:
     /**
@@ -37,6 +42,13 @@ public slots:
      * @param name : The name of the new league to be created.
      */
     void createLeague(const QString &name);
+    /**
+     * @brief This signal is emmitted when the create button is pressed.
+     * @param shortName : The short name of the team to be created.
+     * @param fullName : The full name of the team to be created.
+     * @param lNames : The list of leagues names in which the team to be created will be.
+     */
+    void createTeam(const QString& shortName, const QString& fullName, const QVector<QString> lNames);
 
 private:
     /**

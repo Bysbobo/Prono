@@ -2,6 +2,7 @@
 #include <QMenuBar>
 #include <QStatusBar>
 #include "addleaguewidget.h"
+#include "addteamwidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -199,7 +200,11 @@ void MainWindow::deleteLeague()
 
 void MainWindow::addTeam()
 {
-
+    // Create the add league widget
+    AddTeamWidget *wdg = new AddTeamWidget(apCentralWdg->getLeagues());
+    wdg->show();
+    wdg->setWindowModality(Qt::ApplicationModal);
+    connect(wdg, SIGNAL(teamToBeCreated(QString,QString,QVector<QString>)), apCentralWdg, SLOT(createTeam(QString,QString,QVector<QString>)));
 }
 
 void MainWindow::editTeam()

@@ -13,6 +13,7 @@ public:
     Team(std::string name, std::string shortName);
 
     void addPointsForRanking(int points);
+    void update();
     void updateRanking(unsigned int rankIndicator);
     void updateMatchCounter();
     void updateGoals(unsigned int nbMarkedGoals, unsigned int nbTakenGoals);

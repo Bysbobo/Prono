@@ -8,20 +8,24 @@ class Match
 {
 public:
     Match();
-    Match(Team teamIn, Team teamOut, unsigned int scoreIn, unsigned int scoreOut);
+    Match(unsigned int day, Team& teamIn, Team& teamOut, unsigned int scoreIn, unsigned int scoreOut);
+    Match(unsigned int day, Team& teamIn, Team& teamOut, unsigned int forfait);
 
-    Team prono() const;
+    void prono() const;
 
-    Team getHomeTeam() const;
-    Team getOutsideTeam() const;
+    Team& getHomeTeam();
+    Team& getOutsideTeam();
     unsigned int getHomeTeamScore() const;
     unsigned int getOutsideTeamScore() const;
+    unsigned int getJourney() const;
 
 private:
     Team _homeTeam;
     Team _outsideTeam;
     unsigned int _homeTeamScore;
     unsigned int _outsideTeamScore;
+
+    unsigned int _journey;
 };
 
 #endif // MATCH_H_INCLUDED

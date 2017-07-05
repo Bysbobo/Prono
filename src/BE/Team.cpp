@@ -20,6 +20,11 @@ void Team::addPointsForRanking(int points)
 	_rankingPointNb += points;
 }
 
+void Team::update()
+{
+
+}
+
 void Team::updateMatchCounter()
 {
 	_playedGameNumber++;
@@ -28,6 +33,7 @@ void Team::updateMatchCounter()
 void Team::updateRanking(unsigned int rankIndicator)
 {
 	_ranking = rankIndicator;
+	cout << "BIEN SUR GROS CON!" << endl;
 }
 
 void Team::updateGoals(unsigned int nbMarkedGoals, unsigned int nbTakenGoals)

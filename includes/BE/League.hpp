@@ -14,16 +14,17 @@ public:
     League();
 
     bool collectTeams();
-    bool collectMatchs(unsigned int untilThisJourney);
+    bool collectMatchs();
     bool isTeamAvailable(const std::string teamToCheck) const;
     Team& stringToTeam(const std::string teamName);
     void updateRanking();
     void teamsToString() const;
     void matchsToString() const;
-    void attributionOfPenality(const Team& teamToPenalize);
+
+    std::vector<Team>& getRankingPerJourney(unsigned int day);
 
     std::vector<Team> getVectorOfTeams() const;
-    std::vector<Match>  getVectorOfMatchs() const;
+    std::vector<Match> getVectorOfMatchs() const;
 
 private:
     std::vector<Team> _vectorOfTeams;

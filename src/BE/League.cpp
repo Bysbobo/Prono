@@ -37,7 +37,7 @@ bool League::collectTeams()
     return true;
 }
 
-bool League::collectMatchs(unsigned int untilThisJourney)
+bool League::collectMatchs()
 {
     // Read and stock all matches
     string firstTeam, secondTeam;
@@ -49,11 +49,11 @@ bool League::collectMatchs(unsigned int untilThisJourney)
         cerr << "Failed to open " << MATCHS << " for reading!" << endl;
         return false;
     }
+
+    unsigned int index(1), numberOfJourney;
     
-    unsigned int journeyNumberTreated = 0, test = 1;
-    untilThisJourney = ((untilThisJourney < 10) ? 10 : untilThisJourney);
     string line;
-    while (getline(matchFlow, line, '\n') && ++journeyNumberTreated <= untilThisJourney)
+    while (getline(matchFlow, line, '\n'))
     {
         istringstream iss(line);
         string aString;
@@ -61,15 +61,21 @@ bool League::collectMatchs(unsigned int untilThisJourney)
         while (getline(iss, aString, '/'))
         {
             count++;
-            if (count == 0 || count == 1)
+            if (count == 0)
                 continue;
+
+            if (count == 1)
+            {
+                numberOfJourney = atol(aString.c_str());
+                continue;
+            }
 
             switch (count % 4)
             {
                 case 2:
                 {
                     firstTeam   =  aString;
-                    cout << "N." << test++ << " - " << firstTeam << " ";
+                    cout << "N." << index++ << " - " << firstTeam << " ";
                     break;
                 }
                 case 3:
@@ -88,35 +94,20 @@ bool League::collectMatchs(unsigned int untilThisJourney)
                 {
                     secondTeam  =  aString;
                     cout << secondTeam << endl;
-                    // For each line, have to save collected datas
-                    vector<Team>::iterator itVect = _vectorOfTeams.begin();
-                    for (; itVect != _vectorOfTeams.end(); ++itVect)
-                    {
-                        if (itVect->getShortName() == firstTeam)
-                        {
-                            if (firstScore == secondScore) itVect->addPointsForRanking(1);
-                            if (firstScore >  secondScore) itVect->addPointsForRanking(3);
-                            itVect->updateGoals(firstScore, secondScore);
-                            itVect->updateMatchCounter();
-                        }
-                        if (itVect->getShortName() == secondTeam)
-                        {
-                            if (secondScore == firstScore) itVect->addPointsForRanking(1);
-                            if (secondScore >  firstScore) itVect->addPointsForRanking(3);
-                            itVect->updateGoals(secondScore, firstScore);
-                            itVect->updateMatchCounter();
-                        }
-                    }
-                    _vectorOfMatchs.push_back(Match(stringToTeam(firstTeam), stringToTeam(secondTeam), firstScore, secondScore));
+                    
+                    _vectorOfMatchs.push_back(Match(numberOfJourney, stringToTeam(firstTeam), stringToTeam(secondTeam), firstScore, secondScore));
                 }
             }
         }
     }
     
+    // Weird and bad
+    _vectorOfMatchs.push_back(Match(numberOfJourney, stringToTeam("SCB"), stringToTeam("OL"), 1));
+
     sort(_vectorOfTeams.begin(), _vectorOfTeams.end());
     reverse(_vectorOfTeams.begin(), _vectorOfTeams.end());
 
-    updateRanking();
+    //updateRanking();
 
     matchFlow.close();
 
@@ -212,16 +203,15 @@ void League::matchsToString() const
         cout << (getVectorOfMatchs())[i].getOutsideTeam().getName();
         
         cout << "- Prono: ";
-        //cout << "None for now, sorry ;) => ";
-        cout << (getVectorOfMatchs())[i].prono().getName();
+        (getVectorOfMatchs())[i].prono();
 
         cout << endl;
     }
 }
 
-void attributionOfPenality(const Team& teamToPenalize)
+vector<Team>& League::getRankingPerJourney(unsigned int day)
 {
-    
+    return _vectorOfTeams;
 }
 
 vector<Team> League::getVectorOfTeams() const

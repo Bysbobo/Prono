@@ -43,10 +43,17 @@ void CentralWidget::setTeams(const QModelIndex &index)
     {
         if (aLeagues[i].getName() == leagueName)
         {
+            // Update the team tree model
             TreeModel* oldTeamModel = apTeamModel;
             apTeamModel = new TreeModel(tr("Teams"), aLeagues[i].getListOfTeamsForTree());
             apTeamView->setModel(apTeamModel);
             delete oldTeamModel;
+
+            // Reset the team  tree model
+            TreeModel* oldMatchModel = apMatchModel;
+            apMatchModel = new TreeModel(tr("Matches"), tr(""));
+            apMatchView->setModel(apMatchModel);
+            delete oldMatchModel;
             return;
         }
     }

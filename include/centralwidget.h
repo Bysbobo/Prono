@@ -38,12 +38,12 @@ public slots:
      */
     void setMatches(const QModelIndex &index);
     /**
-     * @brief This method creates a new league.
+     * @brief This slot creates a new league.
      * @param name : The name of the new league to be created.
      */
     void createLeague(const QString &name);
     /**
-     * @brief This signal is emmitted when the create button is pressed.
+     * @brief This slot creates a new team.
      * @param shortName : The short name of the team to be created.
      * @param fullName : The full name of the team to be created.
      * @param lNames : The list of leagues names in which the team to be created will be.

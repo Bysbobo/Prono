@@ -17,6 +17,16 @@ public:
      */
     Match(const QString &homeTeam, const QString &awayTeam);
     /**
+     * @brief A constructor that initialise the name of the home team and the away team, the forfeit of one of the teams and the team which is forfeited
+     * @param season : The season of the match.
+     * @param day : The day number of the match.
+     * @param homeTeam : The short name of the home team.
+     * @param awayTeam : The short name of the away team.
+     * @param forfeit : The status of the match
+     * @param teamForfeited : The team which is forfeited
+     */
+    Match(const QString& season, uint8_t day, const QString &homeTeam, const QString &awayTeam, bool forfeit, const QString &teamForfeited);
+    /**
      * @brief A constructor that initialise the name of the home team and the away team and the score if the game has been played.
      * @param season : The season of the match.
      * @param day : The day number of the match.
@@ -44,9 +54,14 @@ public:
     inline void setSeason(const QString& season) { aSeason = season; }
     /**
      * @brief This method indicates whether the game has been played or not.
-     * @return True if the gams has been played, false otherwise.
+     * @return True if the game has been played, false otherwise.
      */
     inline bool isGamePlayed() const { return aPlayed; }
+    /**
+     * @brief This method indicates whether one team has been penalized.
+     * @return True if the game has been stopped, false otherwise.
+     */
+    inline bool isGameForfeited() const { return aForfeit; }
     /**
      * @brief This method set the game as played or not played.
      * @param played : The given status of the game. By default this argument is set to true.
@@ -62,6 +77,11 @@ public:
      * @return A Qstring of the away team name.
      */
     inline QString getAwayTeam() const { return aAwayTeam; }
+    /**
+     * @brief A getter to the team forfeited.
+     * @return A QString of the team forfeited
+     */
+    inline QString getForfeitTeam() const { return ( aForfeit ? aForfeitTeam : NULL ); }
     /**
      * @brief A getter to the home team score.
      * @return An unsigned int of the home team score.
@@ -103,6 +123,10 @@ private:
      */
     bool aPlayed;
     /**
+     * @brief aForfeit : Indicates whether one team has been penalized.
+     */
+    bool aForfeit;
+    /**
      * @brief aDay : The day number of the match.
      */
     uint8_t aDay;
@@ -115,6 +139,10 @@ private:
      * @brief aAwayTeam : The short name of the away team.
      */
     QString aAwayTeam;
+    /**
+     * @brief aForfeitTeam : The name of the team which has been penalized
+     */
+    QString aForfeitTeam;
 
     /**
      * @brief aHomeScore : The score of the home team.

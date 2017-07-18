@@ -3,7 +3,20 @@
 Match::Match(const QString &homeTeam, const QString &awayTeam) :
     aPlayed(false),
     aHomeTeam(homeTeam),
-    aAwayTeam(awayTeam)
+    aAwayTeam(awayTeam),
+    aForfeit(false)
+{
+}
+
+Match::Match(const QString& season, uint8_t day, const QString &homeTeam, const QString &awayTeam, bool forfeit, const QString &teamForfeited) :
+    aID(""),
+    aSeason(season),
+    aPlayed(true),
+    aDay(day),
+    aHomeTeam(homeTeam),
+    aAwayTeam(awayTeam),
+    aForfeit(forfeit),
+    aForfeitTeam(teamForfeited)
 {
 }
 
@@ -15,7 +28,8 @@ Match::Match(const QString& season, uint8_t day, const QString &homeTeam, const 
     aHomeTeam(homeTeam),
     aAwayTeam(awayTeam),
     aHomeScore(homeScore),
-    aAwayScore(awayScore)
+    aAwayScore(awayScore),
+    aForfeit(false)
 {
     aID.append(season).append(QString::number(day)).append(homeTeam).append(awayTeam);
 }

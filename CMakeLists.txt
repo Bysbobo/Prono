@@ -32,5 +32,8 @@ ADD_DEFINITIONS(${Qt5Widgets_DEFINITIONS})
 # Add the compilation flags for QT5 Widgets module so the build succeed
 SET(CMAKE_CXX_FLAGS "${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
+# Add -Wall flag at the compilation
+ADD_DEFINITIONS( "-Wall" )
+
 # Add the subdirectories
 SUBDIRS(includes src)

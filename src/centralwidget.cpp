@@ -67,6 +67,7 @@ void CentralWidget::setMatches(const QModelIndex &index)
     {
         if (aLeagues[i].getName() == leagueName)
         {
+            // Update the match tree model
             TreeModel* oldMatchModel = apMatchModel;
             const QString teamName = apTeamModel->data(index, Qt::DisplayRole).toString().split(tr(" ")).at(0);
             const int teamIndex = aLeagues[i].getTeamIndex(teamName);

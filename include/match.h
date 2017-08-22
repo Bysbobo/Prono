@@ -17,13 +17,14 @@ public:
      */
     Match(const QString &homeTeam, const QString &awayTeam);
     /**
-     * @brief A constructor that initialise the name of the home team and the away team, the forfeit of one of the teams and the team which is forfeited
+     * @brief A constructor that initialise the name of the home team and the away team, the forfeit of one of the teams and
+     * the team which is forfeited.
      * @param season : The season of the match.
      * @param day : The day number of the match.
      * @param homeTeam : The short name of the home team.
      * @param awayTeam : The short name of the away team.
-     * @param forfeit : The status of the match
-     * @param teamForfeited : The team which is forfeited
+     * @param forfeit : The status of the match.
+     * @param teamForfeited : The team which is forfeited.
      */
     Match(const QString& season, uint8_t day, const QString &homeTeam, const QString &awayTeam, bool forfeit, const QString &teamForfeited);
     /**

@@ -11,7 +11,6 @@ QMAKE_CXXFLAGS += -std=c++11
 
 INCLUDEPATH += include
 
-
 SOURCES += src/main.cpp\
     src/mainwindow.cpp \
     src/about.cpp \
@@ -40,3 +39,15 @@ DISTFILES += \
 
 RESOURCES += \
     resources/ressources.qrc
+
+test {
+    message(Test build)
+    QT += testlib
+    TARGET = UnitTests
+
+    SOURCES -= src/main.cpp
+
+    SOURCES += tests/matchtest.cpp
+} else {
+    message(Normal build)
+}

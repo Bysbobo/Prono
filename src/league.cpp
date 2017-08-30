@@ -75,7 +75,7 @@ bool League::retrieveMatchsFromFile(const QString& fileName)
 
     // Retrieve teams information
     uint8_t i=0;
-    uint8_t day;
+    uint8_t day=0;
     while (!in.atEnd()) {
         const QString line = in.readLine();
 

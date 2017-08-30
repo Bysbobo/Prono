@@ -47,7 +47,10 @@ test {
 
     SOURCES -= src/main.cpp
 
-    SOURCES += tests/matchtest.cpp
+    HEADERS += tests/matchtest.h
+
+    SOURCES += tests/matchtest.cpp \
+               tests/main.cpp
 } else {
     message(Normal build)
 }

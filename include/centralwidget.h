@@ -7,6 +7,7 @@
 #include <QHBoxLayout>
 #include "model/treemodel.h"
 #include "league.h"
+#include "widgets/informationwidget.h"
 
 /**
  * @brief The CentralWidget class implements the central widget of the main window.
@@ -50,6 +51,23 @@ public slots:
      */
     void createTeam(const QString& shortName, const QString& fullName, const QVector<QString> lNames);
 
+private slots:
+    /**
+     * @brief This slot updates the information widget to show information of the double clicked league.
+     * @param index : The index of the league.
+     */
+    void updateInfoWidgetToLeague(const QModelIndex &index);
+    /**
+     * @brief This slot updates the information widget to show information of the double clicked team.
+     * @param index : The index of the team.
+     */
+    void updateInfoWidgetToTeam(const QModelIndex &index);
+    /**
+     * @brief This slot updates the information widget to show information of the double clicked match.
+     * @param index : The index of the match.
+     */
+    void updateInfoWidgetToMatch(const QModelIndex &index);
+
 private:
     /**
      * @brief This method creates a QString in which the list of the leagues is defined as they should appear in the tree view.
@@ -87,6 +105,11 @@ private:
      * @brief apTreeViewLayout : The layout of the trees views.
      */
     QVBoxLayout *apTreeViewLayout;
+
+    /**
+     * @brief apInfoWdg : The information widget that will be displayed in the center.
+     */
+    InformationWidget *apInfoWdg;
 
     // The leagues.
     /**

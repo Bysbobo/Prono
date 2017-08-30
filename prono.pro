@@ -20,7 +20,8 @@ SOURCES += src/main.cpp\
     src/match.cpp \
     src/team.cpp \
     src/widgets/addleaguewidget.cpp \
-    src/widgets/addteamwidget.cpp
+    src/widgets/addteamwidget.cpp \
+    src/widgets/informationwidget.cpp
 
 HEADERS  += include/mainwindow.h \
     include/widgets/about.h \
@@ -31,7 +32,8 @@ HEADERS  += include/mainwindow.h \
     include/match.h \
     include/team.h \
     include/widgets/addleaguewidget.h \
-    include/widgets/addteamwidget.h
+    include/widgets/addteamwidget.h \
+    include/widgets/informationwidget.h
 
 DISTFILES += \
     resources/database/Infos.txt \

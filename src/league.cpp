@@ -23,6 +23,15 @@ int League::getTeamIndex(const QString& teamName) const
     return -1;
 }
 
+const Team League::getTeam(const QString& teamName) const
+{
+    const int size = aTeams.size();
+    for (int i = 0; i < size; ++i)
+        if (aTeams.at(i).getFullName() == teamName || aTeams.at(i).getShortName() == teamName)
+            return aTeams.at(i);
+    return Team();
+}
+
 QString League::getListOfTeamsForTree() const
 {
     QString ret("");

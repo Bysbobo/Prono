@@ -43,6 +43,12 @@ public:
      */
     int getTeamIndex(const QString& teamName) const;
     /**
+     * @brief This method returns the team from its given name in the vector of teams of the league.
+     * @param teamName : The name of the team which will be returned. It can be the short name or the full name.
+     * @return The team from its given name in the vector of teams of the league.
+     */
+    const Team getTeam(const QString& teamName) const;
+    /**
      * @brief A getter to the name of the league.
      * @return The name of the league.
      */

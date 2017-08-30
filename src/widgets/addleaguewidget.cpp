@@ -1,4 +1,4 @@
-#include "addleaguewidget.h"
+#include "widgets/addleaguewidget.h"
 #include <QMessageBox>
 
 AddLeagueWidget::AddLeagueWidget(QWidget *parent) : QWidget(parent)

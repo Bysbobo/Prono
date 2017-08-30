@@ -13,25 +13,25 @@ INCLUDEPATH += include
 
 SOURCES += src/main.cpp\
     src/mainwindow.cpp \
-    src/about.cpp \
+    src/widgets/about.cpp \
     src/centralwidget.cpp \
-    src/treemodel.cpp \
+    src/model/treemodel.cpp \
     src/league.cpp \
     src/match.cpp \
     src/team.cpp \
-    src/addleaguewidget.cpp \
-    src/addteamwidget.cpp
+    src/widgets/addleaguewidget.cpp \
+    src/widgets/addteamwidget.cpp
 
 HEADERS  += include/mainwindow.h \
-    include/about.h \
+    include/widgets/about.h \
     include/centralwidget.h \
-    include/treeitem.h \
-    include/treemodel.h \
+    include/model/treeitem.h \
+    include/model/treemodel.h \
     include/league.h \
     include/match.h \
     include/team.h \
-    include/addleaguewidget.h \
-    include/addteamwidget.h
+    include/widgets/addleaguewidget.h \
+    include/widgets/addteamwidget.h
 
 DISTFILES += \
     resources/database/Infos.txt \

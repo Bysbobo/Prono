@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 #include <QMenuBar>
 #include <QStatusBar>
-#include "addleaguewidget.h"
-#include "addteamwidget.h"
+#include "widgets/addleaguewidget.h"
+#include "widgets/addteamwidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

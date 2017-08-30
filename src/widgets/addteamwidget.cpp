@@ -1,4 +1,4 @@
-#include "addteamwidget.h"
+#include "widgets/addteamwidget.h"
 #include <QMessageBox>
 
 AddTeamWidget::AddTeamWidget(QVector<League> leagues, QWidget *parent) : QWidget(parent)

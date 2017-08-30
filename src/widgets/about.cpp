@@ -1,4 +1,4 @@
-#include "about.h"
+#include "widgets/about.h"
 #include <QDate>
 
 About::About(QWidget *parent) : QWidget(parent)

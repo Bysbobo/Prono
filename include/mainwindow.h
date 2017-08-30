@@ -7,7 +7,7 @@
 #include <QApplication>
 #include <QScrollArea>
 #include <QDockWidget>
-#include "about.h"
+#include "widgets/about.h"
 #include "centralwidget.h"
 
 /**

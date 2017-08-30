@@ -5,7 +5,7 @@
 #include <QTreeView>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include "treemodel.h"
+#include "model/treemodel.h"
 #include "league.h"
 
 /**

@@ -150,8 +150,6 @@ void CentralWidget::updateInfoWidgetToLeague(const QModelIndex &index)
 
 void CentralWidget::updateInfoWidgetToTeam(const QModelIndex &index)
 {
-    Q_UNUSED(index)
-
     const QString leagueName = apLeagueModel->data(apLeagueView->currentIndex(), Qt::DisplayRole).toString();
     const int size = aLeagues.size();
     for (int i = 0; i < size; ++i)
@@ -172,7 +170,31 @@ void CentralWidget::updateInfoWidgetToTeam(const QModelIndex &index)
 
 void CentralWidget::updateInfoWidgetToMatch(const QModelIndex &index)
 {
-
+    const QString leagueName = apLeagueModel->data(apLeagueView->currentIndex(), Qt::DisplayRole).toString();
+    const int size = aLeagues.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (aLeagues[i].getName() == leagueName)
+        {
+            const QString teamName = apTeamModel->data(apTeamView->currentIndex(), Qt::DisplayRole).toString().split(tr(" ")).at(0);
+            const QString matchString = apMatchModel->data(index, Qt::DisplayRole).toString();
+            const QVector<Match>& matches = aLeagues[i].getTeam(teamName).getMatches();
+            const int size1 = matches.size();
+            for (int j = 0; j < size1; ++j)
+            {
+                if (matchString == matches[j].shownLine())
+                {
+                    // Refresh the info widget
+                    QWidget *old = apInfoWdg;
+                    apInfoWdg = new InformationWidget(matches[j]);
+                    apMainLayout->removeItem(apMainLayout->itemAt(apMainLayout->indexOf(old)));
+                    apMainLayout->addWidget(apInfoWdg, 3);
+                    delete old;
+                    return;
+                }
+            }
+        }
+    }
 }
 
 QString CentralWidget::getListOfLeaguesForTree() const

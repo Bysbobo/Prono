@@ -55,3 +55,14 @@ bool Match::isADraw()
     Q_ASSERT(aPlayed);
     return !aForfeit && aHomeScore == aAwayScore;
 }
+
+QString Match::shownLine() const
+{
+    QString ret("");
+    if (aPlayed)
+        ret.append(getHomeTeam()).append(QString("   ")).append(QString::number(getHomeTeamScore()))
+                .append(QString(" - ")).append(QString::number(getAwayTeamScore())).append(QString("   ")).append(getAwayTeam());
+    else
+        ret.append(getHomeTeam()).append(QString("     -     ")).append(getAwayTeam());
+    return ret;
+}

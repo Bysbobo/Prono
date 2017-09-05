@@ -26,7 +26,7 @@ InformationWidget::InformationWidget(const League &league, QWidget *parent) : QW
 InformationWidget::InformationWidget(const Team &team, QWidget *parent) : QWidget(parent)
 {
     // Create the title
-    apTitleLabel = new QLabel(team.getFullName().append(' (').append(team.getShortName()).append(')'));
+    apTitleLabel = new QLabel(team.getFullName().append(" (").append(team.getShortName()).append(')'));
     QFont font = apTitleLabel->font();
     font.setBold(true);
     font.setPointSize(18);

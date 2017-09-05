@@ -109,6 +109,11 @@ public:
      * @return True if the game ended in a draw, false otherwise.
      */
     bool isADraw();
+    /**
+     * @brief This method returns the way the match should be shown in the tree.
+     * @return A QString of the way the match is shown in the tree.
+     */
+    QString shownLine() const;
 
 private:
     /**

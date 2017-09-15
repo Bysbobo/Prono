@@ -21,7 +21,9 @@ SOURCES += src/main.cpp\
     src/team.cpp \
     src/widgets/addleaguewidget.cpp \
     src/widgets/addteamwidget.cpp \
-    src/widgets/informationwidget.cpp
+    src/widgets/informationwidget.cpp \
+    src/widgets/rankingtableview.cpp \
+    src/teamstatistics.cpp
 
 HEADERS  += include/mainwindow.h \
     include/widgets/about.h \
@@ -33,7 +35,9 @@ HEADERS  += include/mainwindow.h \
     include/team.h \
     include/widgets/addleaguewidget.h \
     include/widgets/addteamwidget.h \
-    include/widgets/informationwidget.h
+    include/widgets/informationwidget.h \
+    include/widgets/rankingtableview.h \
+    include/teamstatistics.h
 
 DISTFILES += \
     resources/database/Infos.txt \

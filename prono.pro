@@ -23,7 +23,7 @@ SOURCES += src/main.cpp\
     src/widgets/addteamwidget.cpp \
     src/widgets/informationwidget.cpp \
     src/widgets/rankingtableview.cpp \
-    src/teamstatistics.cpp
+    src/statistics.cpp
 
 HEADERS  += include/mainwindow.h \
     include/widgets/about.h \
@@ -37,7 +37,7 @@ HEADERS  += include/mainwindow.h \
     include/widgets/addteamwidget.h \
     include/widgets/informationwidget.h \
     include/widgets/rankingtableview.h \
-    include/teamstatistics.h
+    include/statistics.h
 
 DISTFILES += \
     resources/database/Infos.txt \
